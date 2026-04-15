@@ -607,7 +607,7 @@ function renderCharts(datos) {
     });
     const bandaMap = {};
     predOriginal.forEach(r => {
-      if (r.yhat_lower !== undefined) bandaMap[r.ds.substring(0,10)] = {lo: r.yhat_lower, hi: r.yhat_upper};
+      if (r.Tasa_vacio_lo !== undefined) bandaMap[r.ds.substring(0,10)] = {lo: r.Tasa_vacio_lo, hi: r.Tasa_vacio_hi};
     });
 
     // Índice donde empieza la predicción
@@ -744,7 +744,7 @@ function renderCharts(datos) {
         scales:{
           x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
           y1:{position:'left', ticks:{color:'#00D4FF',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}},
-          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false}},
+          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false},suggestedMin:0},
         }
       },
       plugins:[corteLine],
