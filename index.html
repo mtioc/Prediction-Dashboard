@@ -14,6 +14,7 @@
   --green:#00E5A0;--green-dim:rgba(0,229,160,0.1);
   --red:#FF4560;--red-dim:rgba(255,69,96,0.1);
   --amber:#FFB020;--amber-dim:rgba(255,176,32,0.1);
+  --purple:#A78BFA;--purple-dim:rgba(167,139,250,0.1);
   --text:#E8ECF4;--text2:#8892A4;--text3:#4A5268;
   --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
   --u17:#00D4FF;--u18:#FF6B35;
@@ -23,7 +24,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 
-/* HEADER */
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:12px;}
 .logo-mark{width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;color:#fff;}
@@ -33,10 +33,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .header-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-align:right;}
 .header-meta strong{color:var(--orange);display:block;}
 
-/* CONTAINER */
 .container{max-width:1200px;margin:0 auto;padding:24px 24px 60px;}
 
-/* CONTROLS */
 .controls{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;}
 .ctrl-group{display:flex;flex-direction:column;gap:5px;}
 .ctrl-group label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;}
@@ -50,26 +48,51 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .btn-sec:hover{border-color:var(--border2);color:var(--text);background:var(--surface2);}
 .btn-export{background:var(--green-dim);border:1px solid rgba(0,229,160,0.25);color:var(--green);}
 .btn-export:hover{background:rgba(0,229,160,0.18);}
+.btn-scenario{background:var(--purple-dim);border:1px solid rgba(167,139,250,0.25);color:var(--purple);}
+.btn-scenario:hover{background:rgba(167,139,250,0.18);}
+.btn-scenario.active{background:rgba(167,139,250,0.22);border-color:var(--purple);}
 .ctrl-sep{width:1px;height:36px;background:var(--border);align-self:flex-end;margin:0 4px;}
 
-/* ESTADO */
 #statusBar{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);padding:10px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;display:none;}
 #statusBar.visible{display:block;}
 #statusBar.ok{color:var(--green);border-color:rgba(0,229,160,0.2);}
 #statusBar.err{color:var(--red);border-color:rgba(255,69,96,0.2);}
 
-/* KPI CARDS */
+/* PANEL SUPUESTOS */
+.scenario-panel{background:var(--bg2);border:1px solid rgba(167,139,250,0.25);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:none;}
+.scenario-panel.open{display:block;}
+.scenario-title{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.scenario-desc{font-size:11px;color:var(--text3);margin-bottom:18px;}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.scenario-ctrl{display:flex;flex-direction:column;gap:8px;}
+.scenario-ctrl label{font-size:10px;font-weight:500;color:var(--text2);letter-spacing:0.08em;text-transform:uppercase;}
+.slider-row{display:flex;align-items:center;gap:10px;}
+.slider-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;background:var(--surface2);border-radius:2px;outline:none;cursor:pointer;}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--purple);cursor:pointer;transition:transform 0.1s;}
+.slider-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
+.slider-val{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--purple);min-width:52px;text-align:right;}
+.scenario-impact{background:var(--surface);border-radius:8px;padding:12px 16px;margin-top:16px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+.scenario-impact-item{display:flex;flex-direction:column;gap:2px;}
+.scenario-impact-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;}
+.scenario-impact-val{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;}
+.impact-neutral{color:var(--text2);}
+.impact-bad{color:var(--red);}
+.impact-good{color:var(--green);}
+.scenario-reset{font-size:11px;color:var(--text3);cursor:pointer;text-decoration:underline;margin-left:auto;}
+.scenario-reset:hover{color:var(--text2);}
+
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;transition:border-color 0.2s;}
 .kpi-label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
 .kpi-val{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;line-height:1;}
 .kpi-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+.kpi-scenario{font-size:10px;margin-top:4px;font-family:'IBM Plex Mono',monospace;}
 .kpi.orange .kpi-val{color:var(--orange);}
 .kpi.cyan .kpi-val{color:var(--cyan);}
 .kpi.green .kpi-val{color:var(--green);}
 .kpi.amber .kpi-val{color:var(--amber);}
+.kpi.scenario-active{border-color:rgba(167,139,250,0.35);}
 
-/* RESUMEN TABLE */
 .section-title{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
 .resumen-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;}
@@ -86,16 +109,19 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .tasa-good{color:var(--green);}
 .tasa-warn{color:var(--amber);}
 .tasa-bad{color:var(--red);}
-.pred-flag{font-size:9px;color:var(--text3);margin-left:4px;}
 
-/* CHARTS GRID */
+/* CHARTS */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
 .chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;}
-.chart-title{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.chart-title{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;}
 .chart-title strong{color:var(--text);}
-.chart-wrap{position:relative;height:180px;}
+.chart-legend{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.chart-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
+.legend-line{width:16px;height:2px;border-radius:1px;}
+.legend-band{width:16px;height:8px;border-radius:2px;opacity:0.4;}
+.legend-vline{width:2px;height:10px;border-radius:1px;}
+.chart-wrap{position:relative;height:190px;}
 
-/* DETALLE TABLE */
 .detalle-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
 .detalle-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .detalle-scroll{overflow-x:auto;max-height:340px;overflow-y:auto;}
@@ -108,12 +134,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .dot-pred{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block;margin-right:4px;vertical-align:middle;}
 .dot-real{width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;margin-right:4px;vertical-align:middle;}
 
-/* EMPTY STATE */
-.empty{text-align:center;padding:48px;color:var(--text3);}
-.empty-icon{font-size:32px;margin-bottom:12px;}
-.empty-text{font-size:13px;}
-
-/* UPLOAD */
 .upload-zone{border:2px dashed var(--border2);border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all 0.15s;margin-bottom:20px;}
 .upload-zone:hover,.upload-zone.drag{border-color:var(--orange);background:var(--orange-dim);}
 .upload-zone input{display:none;}
@@ -124,7 +144,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 @media(max-width:768px){
   .kpi-row{grid-template-columns:repeat(2,1fr);}
   .charts-grid{grid-template-columns:1fr;}
-  .controls{gap:10px;}
+  .scenario-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -146,7 +166,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 
 <div class="container">
 
-  <!-- CARGA DE DATOS -->
   <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
     ondragover="event.preventDefault();this.classList.add('drag')"
     ondragleave="this.classList.remove('drag')"
@@ -159,7 +178,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 
   <div id="statusBar"></div>
 
-  <!-- CONTROLES -->
   <div class="controls" id="controls" style="display:none">
     <div class="ctrl-group">
       <label>Fecha inicio</label>
@@ -183,59 +201,118 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
       </select>
     </div>
     <div class="ctrl-sep"></div>
+    <button class="btn btn-scenario" id="btnScenario" onclick="toggleScenario()">⚡ Supuestos</button>
     <button class="btn btn-export" onclick="exportarCSV()">⬇ Exportar CSV</button>
     <button class="btn btn-sec" onclick="resetFiltros()">↺ Reset</button>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- PANEL SUPUESTOS -->
+  <div class="scenario-panel" id="scenarioPanel">
+    <div class="scenario-title">⚡ Análisis de supuestos</div>
+    <div class="scenario-desc">
+      Ajusta los parámetros para ver cómo cambia la tasa vacío proyectada. Los cálculos se aplican
+      solo a los días predichos, usando la identidad: Km vacío = Km total − (ICFP ajustado × Km PO ajustado).
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-ctrl">
+        <label>Δ ICFP (puntos porcentuales)</label>
+        <div class="slider-row">
+          <input type="range" id="sliderICFP" min="-10" max="5" step="0.5" value="0"
+                 oninput="actualizarScenario()">
+          <span class="slider-val" id="valICFP">0.0 pp</span>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">
+          Ej: −2 pp → si el ICFP cae 2 puntos porcentuales respecto a lo predicho
+        </div>
+      </div>
+      <div class="scenario-ctrl">
+        <label>Δ Km PO (%)</label>
+        <div class="slider-row">
+          <input type="range" id="sliderKmPO" min="-15" max="15" step="0.5" value="0"
+                 oninput="actualizarScenario()">
+          <span class="slider-val" id="valKmPO">0.0%</span>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">
+          Ej: +5% → si se ejecuta más PO del proyectado
+        </div>
+      </div>
+      <div class="scenario-ctrl">
+        <label>Δ Km Total (%)</label>
+        <div class="slider-row">
+          <input type="range" id="sliderKmTot" min="-15" max="15" step="0.5" value="0"
+                 oninput="actualizarScenario()">
+          <span class="slider-val" id="valKmTot">0.0%</span>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">
+          Ej: −3% → si el km total baja respecto a lo proyectado
+        </div>
+      </div>
+    </div>
+    <div class="scenario-impact" id="scenarioImpact">
+      <div class="scenario-impact-item">
+        <span class="scenario-impact-label">Tasa vacío base</span>
+        <span class="scenario-impact-val impact-neutral" id="siTasaBase">—</span>
+      </div>
+      <div style="font-size:18px;color:var(--text3)">→</div>
+      <div class="scenario-impact-item">
+        <span class="scenario-impact-label">Tasa vacío escenario</span>
+        <span class="scenario-impact-val" id="siTasaScenario">—</span>
+      </div>
+      <div class="scenario-impact-item">
+        <span class="scenario-impact-label">Δ Km vacío (predichos)</span>
+        <span class="scenario-impact-val" id="siDeltaKm">—</span>
+      </div>
+      <div class="scenario-impact-item">
+        <span class="scenario-impact-label">Δ Km vacío / semana</span>
+        <span class="scenario-impact-val" id="siDeltaSemana">—</span>
+      </div>
+      <span class="scenario-reset" onclick="resetScenario()">↺ Resetear supuestos</span>
+    </div>
+  </div>
+
   <div id="dashboard" style="display:none">
 
-    <!-- KPIs -->
     <div class="kpi-row">
-      <div class="kpi orange">
+      <div class="kpi orange" id="kpiCardTotal">
         <div class="kpi-label">Km Total</div>
         <div class="kpi-val" id="kpiKmTotal">—</div>
         <div class="kpi-sub" id="kpiKmTotalSub">período seleccionado</div>
+        <div class="kpi-scenario" id="kpiKmTotalScen" style="display:none"></div>
       </div>
       <div class="kpi cyan">
         <div class="kpi-label">Km Válido</div>
         <div class="kpi-val" id="kpiKmValido">—</div>
         <div class="kpi-sub">ICFP × Km PO</div>
+        <div class="kpi-scenario" id="kpiKmValidoScen" style="display:none"></div>
       </div>
       <div class="kpi green">
         <div class="kpi-label">ICFP Acumulado</div>
         <div class="kpi-val" id="kpiICFP">—</div>
         <div class="kpi-sub">Km válido / Km PO</div>
+        <div class="kpi-scenario" id="kpiICFPScen" style="display:none"></div>
       </div>
-      <div class="kpi amber">
+      <div class="kpi amber" id="kpiCardTasa">
         <div class="kpi-label">Tasa Vacío</div>
         <div class="kpi-val" id="kpiTasa">—</div>
-        <div class="kpi-sub">Km total / Km válido - 1</div>
+        <div class="kpi-sub">Km total / Km válido − 1</div>
+        <div class="kpi-scenario" id="kpiTasaScen" style="display:none"></div>
       </div>
     </div>
 
-    <!-- RESUMEN POR UNIDAD/CÉLULA -->
     <div class="section-title">Resumen por unidad y célula</div>
     <table class="resumen-table" id="tablaResumen">
       <thead>
         <tr>
-          <th>Unidad</th>
-          <th>Célula</th>
-          <th>Km Total</th>
-          <th>Km Válido</th>
-          <th>ICFP</th>
-          <th>Tasa Vacío</th>
-          <th>Días pred.</th>
+          <th>Unidad</th><th>Célula</th><th>Km Total</th>
+          <th>Km Válido</th><th>ICFP</th><th>Tasa Vacío</th><th>Días pred.</th>
         </tr>
       </thead>
       <tbody id="tablaResumenBody"></tbody>
     </table>
 
-    <!-- GRÁFICOS -->
     <div class="section-title">Evolución diaria</div>
     <div class="charts-grid" id="chartsGrid"></div>
 
-    <!-- DETALLE DIARIO -->
     <div class="section-title">Detalle diario</div>
     <div class="detalle-wrap">
       <div class="detalle-header">
@@ -249,15 +326,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
         <table class="detalle-table">
           <thead>
             <tr>
-              <th>Tipo</th>
-              <th>Fecha</th>
-              <th>Célula</th>
-              <th>Unidad</th>
-              <th>ICFP</th>
-              <th>Km PO</th>
-              <th>Km Total</th>
-              <th>Km Válido</th>
-              <th>Tasa Vacío</th>
+              <th>Tipo</th><th>Fecha</th><th>Célula</th><th>Unidad</th>
+              <th>ICFP</th><th>Km PO</th><th>Km Total</th><th>Km Válido</th><th>Tasa Vacío</th>
             </tr>
           </thead>
           <tbody id="tablaDetalleBody"></tbody>
@@ -265,105 +335,150 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
       </div>
     </div>
 
-  </div><!-- /dashboard -->
-
-</div><!-- /container -->
+  </div>
+</div>
 
 <script>
 let DATA = null;
 let mapaUnidad = {};
+let scenarioOpen = false;
 
-// ── CARGA ────────────────────────────────────────────────────
+// ── CARGA ─────────────────────────────────────────────────────
 function handleDrop(e) {
   e.preventDefault();
   document.getElementById('uploadZone').classList.remove('drag');
   const file = e.dataTransfer.files[0];
   if (file) loadFile(file);
 }
-
 function loadFile(file) {
-  if (!file || !file.name.endsWith('.json')) {
-    setStatus('❌ Selecciona un archivo .json válido', 'err');
-    return;
-  }
-  setStatus('⏳ Cargando datos...', '');
+  if (!file || !file.name.endsWith('.json')) { setStatus('❌ Selecciona un archivo .json válido','err'); return; }
+  setStatus('⏳ Cargando datos...','');
   const reader = new FileReader();
   reader.onload = e => {
-    try {
-      DATA = JSON.parse(e.target.result);
-      inicializar();
-    } catch(err) {
-      setStatus('❌ Error al parsear el JSON: ' + err.message, 'err');
-    }
+    try { DATA = JSON.parse(e.target.result); inicializar(); }
+    catch(err) { setStatus('❌ Error al parsear el JSON: '+err.message,'err'); }
   };
   reader.readAsText(file);
 }
-
 function inicializar() {
   const m = DATA.meta;
-
-  // Mapa unidad
   DATA.mapa_unidad.forEach(r => { mapaUnidad[r.Celula] = r.Unidad; });
-
-  // Meta header
   document.getElementById('metaEstrategia').textContent = `Estrategia: ${m.estrategia}`;
-  document.getElementById('metaGenerado').textContent = `Generado: ${m.generado}`;
-
-  // Poblar selectores
+  document.getElementById('metaGenerado').textContent   = `Generado: ${m.generado}`;
   const selCel = document.getElementById('filtroCelula');
   const selUni = document.getElementById('filtroUnidad');
   selCel.innerHTML = '<option value="todas">Todas</option>';
   selUni.innerHTML = '<option value="todas">Todas</option>';
-  m.celulas.forEach(c => { selCel.innerHTML += `<option value="${c}">${c}</option>`; });
+  m.celulas.forEach(c  => { selCel.innerHTML += `<option value="${c}">${c}</option>`; });
   m.unidades.forEach(u => { selUni.innerHTML += `<option value="${u}">${u}</option>`; });
-
-  // Fechas por defecto — mes actual completo o rango disponible
-  const hoy = new Date().toISOString().split('T')[0];
   const anio = new Date().getFullYear();
   const mes  = String(new Date().getMonth()+1).padStart(2,'0');
-  const inicioMes = `${anio}-${mes}-01`;
-  const finMes    = `${anio}-${mes}-${new Date(anio, new Date().getMonth()+1, 0).getDate().toString().padStart(2,'0')}`;
-
-  document.getElementById('fechaIni').value = inicioMes;
-  document.getElementById('fechaFin').value = finMes;
-
-  // Mostrar UI
+  const lastDay = new Date(anio, new Date().getMonth()+1, 0).getDate().toString().padStart(2,'0');
+  document.getElementById('fechaIni').value = `${anio}-${mes}-01`;
+  document.getElementById('fechaFin').value = `${anio}-${mes}-${lastDay}`;
   document.getElementById('uploadZone').style.display = 'none';
   document.getElementById('controls').style.display   = 'flex';
   document.getElementById('dashboard').style.display  = 'block';
-
-  setStatus(`✅ Datos cargados — ${DATA.real.length.toLocaleString()} días reales | ${DATA.prediccion.length.toLocaleString()} días predichos`, 'ok');
+  setStatus(`✅ Datos cargados — ${DATA.real.length.toLocaleString()} días reales | ${DATA.prediccion.length.toLocaleString()} días predichos`,'ok');
   actualizar();
 }
 
-// ── FILTROS ──────────────────────────────────────────────────
+// ── FILTROS ───────────────────────────────────────────────────
 function getDatosFiltrados() {
   const ini    = document.getElementById('fechaIni').value;
   const fin    = document.getElementById('fechaFin').value;
   const celula = document.getElementById('filtroCelula').value;
   const unidad = document.getElementById('filtroUnidad').value;
-
   const filtrar = (arr, esPred) => arr.filter(r => {
     const ds = r.ds.substring(0,10);
     if (ds < ini || ds > fin) return false;
-    const u = mapaUnidad[r.Celula] || r.Unidad || '?';
     if (celula !== 'todas' && r.Celula !== celula) return false;
+    const u = mapaUnidad[r.Celula] || r.Unidad || '?';
     if (unidad !== 'todas' && u !== unidad) return false;
     return true;
   }).map(r => ({...r, es_pred: esPred, Unidad: mapaUnidad[r.Celula] || r.Unidad || '?'}));
-
-  const real = filtrar(DATA.real,      false);
-  const pred = filtrar(DATA.prediccion, true);
-  return [...real, ...pred].sort((a,b) => a.ds < b.ds ? -1 : 1);
+  return [...filtrar(DATA.real,false), ...filtrar(DATA.prediccion,true)]
+    .sort((a,b) => a.ds < b.ds ? -1 : 1);
 }
-
 function resetFiltros() {
   document.getElementById('filtroCelula').value = 'todas';
   document.getElementById('filtroUnidad').value = 'todas';
   actualizar();
 }
 
-// ── ACTUALIZAR DASHBOARD ─────────────────────────────────────
+// ── SUPUESTOS ─────────────────────────────────────────────────
+function toggleScenario() {
+  scenarioOpen = !scenarioOpen;
+  document.getElementById('scenarioPanel').classList.toggle('open', scenarioOpen);
+  document.getElementById('btnScenario').classList.toggle('active', scenarioOpen);
+  if (scenarioOpen) actualizarScenario();
+}
+function resetScenario() {
+  document.getElementById('sliderICFP').value = 0;
+  document.getElementById('sliderKmPO').value = 0;
+  document.getElementById('sliderKmTot').value = 0;
+  actualizarScenario();
+}
+function getScenarioParams() {
+  return {
+    deltaICFP : parseFloat(document.getElementById('sliderICFP').value) / 100,
+    deltaKmPO : parseFloat(document.getElementById('sliderKmPO').value)  / 100,
+    deltaKmTot: parseFloat(document.getElementById('sliderKmTot').value)  / 100,
+  };
+}
+function applyScenario(r, params) {
+  if (!r.es_pred) return r;
+  const icfpAdj  = Math.max(0, (r.ICFP||0) + params.deltaICFP);
+  const kmPOAdj  = (r.Kms_PO||0)       * (1 + params.deltaKmPO);
+  const kmTotAdj = (r.Kms_totales||0)  * (1 + params.deltaKmTot);
+  const kmValAdj = icfpAdj * kmPOAdj;
+  const tasaAdj  = kmValAdj > 0 ? kmTotAdj / kmValAdj - 1 : 0;
+  return {...r, ICFP: icfpAdj, Kms_PO: kmPOAdj, Kms_totales: kmTotAdj,
+               Km_valido: kmValAdj, Tasa_vacio: tasaAdj, _scenario: true};
+}
+function actualizarScenario() {
+  const p = getScenarioParams();
+  // Labels
+  document.getElementById('valICFP').textContent  = (p.deltaICFP*100).toFixed(1) + ' pp';
+  document.getElementById('valKmPO').textContent  = (p.deltaKmPO*100).toFixed(1) + '%';
+  document.getElementById('valKmTot').textContent = (p.deltaKmTot*100).toFixed(1) + '%';
+
+  const datos  = getDatosFiltrados();
+  const predRows = datos.filter(r => r.es_pred);
+  const nDias  = predRows.length;
+
+  // Base
+  const kmValBase  = predRows.reduce((s,r) => s + (r.Km_valido||0), 0);
+  const kmTotBase  = predRows.reduce((s,r) => s + (r.Kms_totales||0), 0);
+  const tasaBase   = kmValBase > 0 ? kmTotBase / kmValBase - 1 : 0;
+
+  // Escenario
+  const adj = predRows.map(r => applyScenario(r, p));
+  const kmValAdj  = adj.reduce((s,r) => s + r.Km_valido, 0);
+  const kmTotAdj  = adj.reduce((s,r) => s + r.Kms_totales, 0);
+  const tasaAdj   = kmValAdj > 0 ? kmTotAdj / kmValAdj - 1 : 0;
+  const deltaKmVac = (kmTotAdj - kmValAdj) - (kmTotBase - kmValBase);
+  const deltaKmSem = nDias > 0 ? deltaKmVac / nDias * 7 : 0;
+
+  const noChange = p.deltaICFP === 0 && p.deltaKmPO === 0 && p.deltaKmTot === 0;
+  const diff = tasaAdj - tasaBase;
+  const cls  = noChange ? 'impact-neutral' : diff > 0 ? 'impact-bad' : 'impact-good';
+
+  document.getElementById('siTasaBase').textContent     = (tasaBase*100).toFixed(2)+'%';
+  document.getElementById('siTasaScenario').textContent = (tasaAdj*100).toFixed(2)+'%';
+  document.getElementById('siTasaScenario').className   = 'scenario-impact-val '+cls;
+  document.getElementById('siDeltaKm').textContent      = (deltaKmVac >= 0 ? '+' : '') + fmtNum(deltaKmVac) + ' km';
+  document.getElementById('siDeltaKm').className        = 'scenario-impact-val '+(noChange?'impact-neutral':deltaKmVac>0?'impact-bad':'impact-good');
+  document.getElementById('siDeltaSemana').textContent  = (deltaKmSem >= 0 ? '+' : '') + fmtNum(deltaKmSem) + ' km';
+  document.getElementById('siDeltaSemana').className    = 'scenario-impact-val '+(noChange?'impact-neutral':deltaKmSem>0?'impact-bad':'impact-good');
+
+  // Actualizar KPIs con escenario
+  const hasScenario = !noChange;
+  renderKPIsScenario(datos, p, hasScenario);
+  renderCharts(datos);
+}
+
+// ── ACTUALIZAR ────────────────────────────────────────────────
 function actualizar() {
   if (!DATA) return;
   const datos = getDatosFiltrados();
@@ -371,252 +486,312 @@ function actualizar() {
   renderResumen(datos);
   renderCharts(datos);
   renderDetalle(datos);
+  if (scenarioOpen) actualizarScenario();
 }
 
-// ── KPIs ─────────────────────────────────────────────────────
+// ── KPIs ──────────────────────────────────────────────────────
 function renderKPIs(datos) {
-  const kmTot  = datos.reduce((s,r) => s + (r.Kms_totales||0), 0);
-  const kmPO   = datos.reduce((s,r) => s + (r.Kms_PO||0), 0);
-  const kmVal  = datos.reduce((s,r) => s + (r.Km_valido||0), 0);
-  const icfp   = kmPO > 0 ? kmVal / kmPO : 0;
-  const tasa   = kmVal > 0 ? kmTot / kmVal - 1 : 0;
-  const nPred  = datos.filter(r => r.es_pred).length;
-  const nReal  = datos.filter(r => !r.es_pred).length;
-
+  const kmTot = datos.reduce((s,r) => s+(r.Kms_totales||0),0);
+  const kmPO  = datos.reduce((s,r) => s+(r.Kms_PO||0),0);
+  const kmVal = datos.reduce((s,r) => s+(r.Km_valido||0),0);
+  const icfp  = kmPO > 0 ? kmVal/kmPO : 0;
+  const tasa  = kmVal > 0 ? kmTot/kmVal-1 : 0;
+  const nPred = datos.filter(r=>r.es_pred).length;
+  const nReal = datos.filter(r=>!r.es_pred).length;
   document.getElementById('kpiKmTotal').textContent  = fmtNum(kmTot);
   document.getElementById('kpiKmValido').textContent = fmtNum(kmVal);
   document.getElementById('kpiICFP').textContent     = icfp.toFixed(4);
-  document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2) + '%';
+  document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2)+'%';
   document.getElementById('kpiKmTotalSub').textContent = `${nReal} días reales · ${nPred} predichos`;
+  // Ocultar etiquetas de escenario
+  ['kpiKmTotalScen','kpiKmValidoScen','kpiICFPScen','kpiTasaScen'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  ['kpiCardTotal','kpiCardTasa'].forEach(id => {
+    document.getElementById(id).classList.remove('scenario-active');
+  });
+}
+function renderKPIsScenario(datos, p, hasScenario) {
+  const adjDatos = datos.map(r => applyScenario(r, p));
+  const kmTot = adjDatos.reduce((s,r) => s+(r.Kms_totales||0),0);
+  const kmPO  = adjDatos.reduce((s,r) => s+(r.Kms_PO||0),0);
+  const kmVal = adjDatos.reduce((s,r) => s+(r.Km_valido||0),0);
+  const icfp  = kmPO > 0 ? kmVal/kmPO : 0;
+  const tasa  = kmVal > 0 ? kmTot/kmVal-1 : 0;
+
+  if (hasScenario) {
+    document.getElementById('kpiKmTotal').textContent  = fmtNum(kmTot);
+    document.getElementById('kpiKmValido').textContent = fmtNum(kmVal);
+    document.getElementById('kpiICFP').textContent     = icfp.toFixed(4);
+    document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2)+'%';
+    const scen = document.getElementById('kpiTasaScen');
+    scen.textContent = '⚡ escenario activo';
+    scen.style.display = 'block';
+    scen.style.color = 'var(--purple)';
+    ['kpiCardTotal','kpiCardTasa'].forEach(id => {
+      document.getElementById(id).classList.add('scenario-active');
+    });
+  }
 }
 
-// ── RESUMEN TABLA ─────────────────────────────────────────────
+// ── RESUMEN ───────────────────────────────────────────────────
 function renderResumen(datos) {
-  // Agrupar por Unidad+Célula
   const grupos = {};
   datos.forEach(r => {
     const k = `${r.Unidad}||${r.Celula}`;
-    if (!grupos[k]) grupos[k] = {Unidad:r.Unidad, Celula:r.Celula, kmTot:0, kmPO:0, kmVal:0, nPred:0, nReal:0};
+    if (!grupos[k]) grupos[k] = {Unidad:r.Unidad,Celula:r.Celula,kmTot:0,kmPO:0,kmVal:0,nPred:0,nReal:0};
     grupos[k].kmTot += r.Kms_totales||0;
     grupos[k].kmPO  += r.Kms_PO||0;
     grupos[k].kmVal += r.Km_valido||0;
     if (r.es_pred) grupos[k].nPred++; else grupos[k].nReal++;
   });
-
-  const rows = Object.values(grupos).sort((a,b) => a.Unidad < b.Unidad ? -1 : a.Celula < b.Celula ? -1 : 1);
-
-  // Totales por unidad
+  const rows = Object.values(grupos).sort((a,b) => a.Unidad<b.Unidad?-1:a.Celula<b.Celula?-1:1);
   const totUni = {};
   rows.forEach(r => {
-    if (!totUni[r.Unidad]) totUni[r.Unidad] = {kmTot:0,kmPO:0,kmVal:0,nPred:0,nReal:0};
-    totUni[r.Unidad].kmTot += r.kmTot;
-    totUni[r.Unidad].kmPO  += r.kmPO;
-    totUni[r.Unidad].kmVal += r.kmVal;
-    totUni[r.Unidad].nPred += r.nPred;
-    totUni[r.Unidad].nReal += r.nReal;
+    if (!totUni[r.Unidad]) totUni[r.Unidad]={kmTot:0,kmPO:0,kmVal:0,nPred:0,nReal:0};
+    totUni[r.Unidad].kmTot+=r.kmTot; totUni[r.Unidad].kmPO+=r.kmPO;
+    totUni[r.Unidad].kmVal+=r.kmVal; totUni[r.Unidad].nPred+=r.nPred;
   });
-
-  let html = '';
-  let prevUni = null;
+  let html='', prevUni=null;
   rows.forEach(r => {
-    if (prevUni && prevUni !== r.Unidad) {
-      const t = totUni[prevUni];
-      html += subtotalRow(prevUni, t);
-    }
-    const icfp = r.kmPO > 0 ? r.kmVal / r.kmPO : 0;
-    const tasa = r.kmVal > 0 ? r.kmTot / r.kmVal - 1 : 0;
-    const badgeClass = r.Unidad === 'U17' ? 'badge-u17' : 'badge-u18';
-    const tasaClass  = tasa < 0.08 ? 'tasa-good' : tasa < 0.15 ? 'tasa-warn' : 'tasa-bad';
-    html += `<tr>
-      <td><span class="${badgeClass}">${r.Unidad}</span></td>
-      <td>${r.Celula}</td>
-      <td>${fmtNum(r.kmTot)}</td>
-      <td>${fmtNum(r.kmVal)}</td>
-      <td>${icfp.toFixed(4)}</td>
-      <td class="${tasaClass}">${(tasa*100).toFixed(2)}%</td>
-      <td style="color:var(--orange)">${r.nPred}</td>
-    </tr>`;
+    if (prevUni && prevUni !== r.Unidad) html += subtotalRow(prevUni, totUni[prevUni]);
+    const icfp = r.kmPO > 0 ? r.kmVal/r.kmPO : 0;
+    const tasa = r.kmVal > 0 ? r.kmTot/r.kmVal-1 : 0;
+    const bc   = r.Unidad==='U17'?'badge-u17':'badge-u18';
+    const tc   = tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
+    html += `<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
+      <td>${fmtNum(r.kmTot)}</td><td>${fmtNum(r.kmVal)}</td>
+      <td>${icfp.toFixed(4)}</td><td class="${tc}">${(tasa*100).toFixed(2)}%</td>
+      <td style="color:var(--orange)">${r.nPred}</td></tr>`;
     prevUni = r.Unidad;
   });
   if (prevUni) html += subtotalRow(prevUni, totUni[prevUni]);
-
-  // Total empresa
-  const tot = {kmTot:0, kmPO:0, kmVal:0};
-  Object.values(totUni).forEach(t => { tot.kmTot+=t.kmTot; tot.kmPO+=t.kmPO; tot.kmVal+=t.kmVal; });
-  const icfpE = tot.kmPO > 0 ? tot.kmVal / tot.kmPO : 0;
-  const tasaE = tot.kmVal > 0 ? tot.kmTot / tot.kmVal - 1 : 0;
-  html += `<tr class="total-empresa">
-    <td colspan="2">▶▶ TOTAL EMPRESA</td>
-    <td>${fmtNum(tot.kmTot)}</td>
-    <td>${fmtNum(tot.kmVal)}</td>
-    <td>${icfpE.toFixed(4)}</td>
-    <td>${(tasaE*100).toFixed(2)}%</td>
-    <td>—</td>
-  </tr>`;
-
+  const tot={kmTot:0,kmPO:0,kmVal:0};
+  Object.values(totUni).forEach(t=>{tot.kmTot+=t.kmTot;tot.kmPO+=t.kmPO;tot.kmVal+=t.kmVal;});
+  const icfpE=tot.kmPO>0?tot.kmVal/tot.kmPO:0;
+  const tasaE=tot.kmVal>0?tot.kmTot/tot.kmVal-1:0;
+  html+=`<tr class="total-empresa"><td colspan="2">▶▶ TOTAL EMPRESA</td>
+    <td>${fmtNum(tot.kmTot)}</td><td>${fmtNum(tot.kmVal)}</td>
+    <td>${icfpE.toFixed(4)}</td><td>${(tasaE*100).toFixed(2)}%</td><td>—</td></tr>`;
   document.getElementById('tablaResumenBody').innerHTML = html;
 }
-
 function subtotalRow(unidad, t) {
-  const icfp = t.kmPO > 0 ? t.kmVal / t.kmPO : 0;
-  const tasa = t.kmVal > 0 ? t.kmTot / t.kmVal - 1 : 0;
-  return `<tr class="subtotal">
-    <td colspan="2">▶ TOTAL ${unidad}</td>
-    <td>${fmtNum(t.kmTot)}</td>
-    <td>${fmtNum(t.kmVal)}</td>
-    <td>${icfp.toFixed(4)}</td>
-    <td>${(tasa*100).toFixed(2)}%</td>
-    <td style="color:var(--orange)">${t.nPred}</td>
-  </tr>`;
+  const icfp=t.kmPO>0?t.kmVal/t.kmPO:0;
+  const tasa=t.kmVal>0?t.kmTot/t.kmVal-1:0;
+  return `<tr class="subtotal"><td colspan="2">▶ TOTAL ${unidad}</td>
+    <td>${fmtNum(t.kmTot)}</td><td>${fmtNum(t.kmVal)}</td>
+    <td>${icfp.toFixed(4)}</td><td>${(tasa*100).toFixed(2)}%</td>
+    <td style="color:var(--orange)">${t.nPred}</td></tr>`;
 }
 
-// ── GRÁFICOS ─────────────────────────────────────────────────
+// ── GRÁFICOS ──────────────────────────────────────────────────
 let charts = {};
-
 function renderCharts(datos) {
-  const celulas = [...new Set(datos.map(r => r.Celula))].sort();
+  const celulas = [...new Set(datos.map(r=>r.Celula))].sort();
   const grid    = document.getElementById('chartsGrid');
-
-  // Destruir charts existentes
-  Object.values(charts).forEach(c => c.destroy());
+  Object.values(charts).forEach(c=>c.destroy());
   charts = {};
   grid.innerHTML = '';
 
-  // Un gráfico por célula con ICFP acumulado
+  const p = scenarioOpen ? getScenarioParams() : null;
+
   celulas.forEach(cel => {
-    const dCel = datos.filter(r => r.Celula === cel).sort((a,b) => a.ds < b.ds ? -1 : 1);
+    const dCel = datos.filter(r=>r.Celula===cel).sort((a,b)=>a.ds<b.ds?-1:1);
     if (!dCel.length) return;
+
+    // Buscar datos predichos con banda de incertidumbre del JSON original
+    const predOriginal = DATA.prediccion.filter(r => {
+      const ini = document.getElementById('fechaIni').value;
+      const fin = document.getElementById('fechaFin').value;
+      return r.Celula === cel && r.ds >= ini && r.ds <= fin;
+    });
+    const bandaMap = {};
+    predOriginal.forEach(r => {
+      if (r.yhat_lower !== undefined) bandaMap[r.ds.substring(0,10)] = {lo: r.yhat_lower, hi: r.yhat_upper};
+    });
+
+    // Índice donde empieza la predicción
+    const idxCorte = dCel.findIndex(r => r.es_pred);
 
     const card = document.createElement('div');
     card.className = 'chart-card';
+    const safeId = cel.replace(/[^a-z0-9]/gi,'_');
     card.innerHTML = `
       <div class="chart-title">
         <strong>${cel}</strong>
-        <span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel] || '—'}</span>
+        <span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel]||'—'}</span>
       </div>
-      <div class="chart-wrap"><canvas id="chart_${cel.replace(/[^a-z0-9]/gi,'_')}"></canvas></div>`;
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="legend-line" style="background:#00D4FF"></div>ICFP acum.</div>
+        <div class="chart-legend-item"><div class="legend-line" style="background:#FF6B35;border-top:2px dashed #FF6B35;height:0"></div>Tasa vacío acum.</div>
+        <div class="chart-legend-item"><div class="legend-band" style="background:#FF6B35"></div>Intervalo 90%</div>
+        ${p ? '<div class="chart-legend-item" style="color:var(--purple)">⚡ escenario</div>' : ''}
+        ${idxCorte >= 0 ? '<div class="chart-legend-item"><div class="legend-vline" style="background:#FFB020"></div>Corte real/pred</div>' : ''}
+      </div>
+      <div class="chart-wrap"><canvas id="chart_${safeId}"></canvas></div>`;
     grid.appendChild(card);
 
-    // Calcular acumulados
-    let kmValAcum = 0, kmPOAcum = 0, kmTotAcum = 0;
-    const labels=[], icfpAcum=[], tasaAcum=[], colorsPred=[];
-    dCel.forEach(r => {
-      kmValAcum += r.Km_valido||0;
-      kmPOAcum  += r.Kms_PO||0;
-      kmTotAcum += r.Kms_totales||0;
-      labels.push(r.ds.substring(5));
-      icfpAcum.push(kmPOAcum > 0 ? +(kmValAcum/kmPOAcum).toFixed(4) : null);
-      tasaAcum.push(kmValAcum > 0 ? +((kmTotAcum/kmValAcum-1)*100).toFixed(2) : null);
-      colorsPred.push(r.es_pred ? 'rgba(255,107,53,0.7)' : 'rgba(0,212,255,0.7)');
+    let kmValAcum=0, kmPOAcum=0, kmTotAcum=0;
+    let kmValScAcum=0, kmPOScAcum=0, kmTotScAcum=0;
+    const labels=[], icfpAcum=[], tasaAcum=[], tasaScenAcum=[];
+    const bandaLo=[], bandaHi=[];
+
+    dCel.forEach((r,i) => {
+      const rAdj = p ? applyScenario(r, p) : r;
+      kmValAcum  += r.Km_valido||0;
+      kmPOAcum   += r.Kms_PO||0;
+      kmTotAcum  += r.Kms_totales||0;
+      kmValScAcum+= rAdj.Km_valido||0;
+      kmPOScAcum += rAdj.Kms_PO||0;
+      kmTotScAcum+= rAdj.Kms_totales||0;
+
+      labels.push(r.ds.substring(5,10));
+      icfpAcum.push(kmPOAcum>0 ? +(kmValAcum/kmPOAcum).toFixed(4) : null);
+      tasaAcum.push(kmValAcum>0 ? +((kmTotAcum/kmValAcum-1)*100).toFixed(2) : null);
+      tasaScenAcum.push(p && r.es_pred && kmValScAcum>0
+        ? +((kmTotScAcum/kmValScAcum-1)*100).toFixed(2) : null);
+
+      // Banda: solo en días predichos, usamos tasa_vacio lower/upper si existe
+      // Si no existe en el JSON, dejamos null (no se renderiza)
+      if (r.es_pred) {
+        const bd = bandaMap[r.ds.substring(0,10)];
+        bandaLo.push(bd ? +(bd.lo*100).toFixed(2) : null);
+        bandaHi.push(bd ? +(bd.hi*100).toFixed(2) : null);
+      } else {
+        bandaLo.push(null);
+        bandaHi.push(null);
+      }
     });
 
-    const ctx = document.getElementById(`chart_${cel.replace(/[^a-z0-9]/gi,'_')}`).getContext('2d');
-    charts[cel] = new Chart(ctx, {
-      data: {
-        labels,
-        datasets: [
-          {
-            type: 'line', label: 'ICFP acum.',
-            data: icfpAcum, yAxisID: 'y1',
-            borderColor: '#00D4FF', backgroundColor: 'transparent',
-            borderWidth: 1.5, pointRadius: 0, tension: 0.3,
-          },
-          {
-            type: 'line', label: 'Tasa vacío acum. %',
-            data: tasaAcum, yAxisID: 'y2',
-            borderColor: '#FF6B35', backgroundColor: 'transparent',
-            borderWidth: 1.5, pointRadius: 0, tension: 0.3, borderDash: [4,3],
-          },
-        ]
+    // Plugin línea vertical en corte real/pred
+    const corteLine = {
+      id: 'corteLine_'+safeId,
+      afterDatasetsDraw(chart) {
+        if (idxCorte < 0) return;
+        const {ctx, scales:{x,y2}} = chart;
+        const xPos = x.getPixelForValue(idxCorte);
+        ctx.save();
+        ctx.strokeStyle = 'rgba(255,176,32,0.6)';
+        ctx.lineWidth   = 1.5;
+        ctx.setLineDash([4,4]);
+        ctx.beginPath();
+        ctx.moveTo(xPos, y2.top);
+        ctx.lineTo(xPos, y2.bottom);
+        ctx.stroke();
+        ctx.restore();
+      }
+    };
+
+    const ctx = document.getElementById(`chart_${safeId}`).getContext('2d');
+    const datasets = [
+      {
+        type:'line', label:'ICFP acum.',
+        data:icfpAcum, yAxisID:'y1',
+        borderColor:'#00D4FF', backgroundColor:'transparent',
+        borderWidth:1.5, pointRadius:0, tension:0.3, order:1,
       },
-      options: {
-        responsive: true, maintainAspectRatio: false, animation: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-          legend: { labels: { color: '#8892A4', font: { size: 10 }, boxWidth: 12 } },
-          tooltip: {
-            backgroundColor: '#1E2330', borderColor: '#252A38', borderWidth: 1,
-            titleColor: '#E8ECF4', bodyColor: '#8892A4', titleFont: { size: 11 },
+      // Banda inferior (invisible, solo para fill)
+      {
+        type:'line', label:'_lo',
+        data:bandaLo, yAxisID:'y2',
+        borderColor:'transparent', backgroundColor:'transparent',
+        pointRadius:0, tension:0.3, fill:false, order:3,
+      },
+      // Banda superior con fill hacia inferior
+      {
+        type:'line', label:'Intervalo 90%',
+        data:bandaHi, yAxisID:'y2',
+        borderColor:'transparent',
+        backgroundColor:'rgba(255,107,53,0.10)',
+        pointRadius:0, tension:0.3,
+        fill:{target:'-1', above:'rgba(255,107,53,0.10)'},
+        order:3,
+      },
+      {
+        type:'line', label:'Tasa vacío acum.',
+        data:tasaAcum, yAxisID:'y2',
+        borderColor:'#FF6B35', backgroundColor:'transparent',
+        borderWidth:1.5, pointRadius:0, tension:0.3,
+        borderDash:[4,3], order:2,
+      },
+    ];
+
+    if (p) {
+      datasets.push({
+        type:'line', label:'Tasa vacío (escenario)',
+        data:tasaScenAcum, yAxisID:'y2',
+        borderColor:'#A78BFA', backgroundColor:'transparent',
+        borderWidth:1.5, pointRadius:0, tension:0.3,
+        borderDash:[2,2], order:2,
+      });
+    }
+
+    charts[cel] = new Chart(ctx, {
+      data:{labels, datasets},
+      options:{
+        responsive:true, maintainAspectRatio:false, animation:false,
+        interaction:{mode:'index', intersect:false},
+        plugins:{
+          legend:{
+            display:false,
+          },
+          tooltip:{
+            backgroundColor:'#1E2330', borderColor:'#252A38', borderWidth:1,
+            titleColor:'#E8ECF4', bodyColor:'#8892A4', titleFont:{size:11},
+            filter: item => item.dataset.label !== '_lo',
           }
         },
-        scales: {
-          x: { ticks: { color: '#4A5268', font: { size: 9 }, maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-          y1: { position: 'left',  ticks: { color: '#00D4FF', font: { size: 9 }, maxTicksLimit: 5 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-          y2: { position: 'right', ticks: { color: '#FF6B35', font: { size: 9 }, maxTicksLimit: 5 }, grid: { display: false } },
+        scales:{
+          x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
+          y1:{position:'left', ticks:{color:'#00D4FF',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}},
+          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false}},
         }
-      }
+      },
+      plugins:[corteLine],
     });
   });
 }
 
-// ── DETALLE TABLA ─────────────────────────────────────────────
+// ── DETALLE ───────────────────────────────────────────────────
 function renderDetalle(datos) {
-  const sorted = [...datos].sort((a,b) => {
-    if (a.ds !== b.ds) return a.ds < b.ds ? -1 : 1;
-    return a.Celula < b.Celula ? -1 : 1;
-  });
-
+  const sorted = [...datos].sort((a,b) => a.ds!==b.ds ? (a.ds<b.ds?-1:1) : a.Celula<b.Celula?-1:1);
   document.getElementById('detalleCount').textContent = `${sorted.length.toLocaleString()} filas`;
-
   const html = sorted.map(r => {
-    const tasa = r.Tasa_vacio ?? (r.Km_valido > 0 ? r.Kms_totales/r.Km_valido-1 : 0);
-    const tasaClass = tasa < 0.08 ? 'tasa-good' : tasa < 0.15 ? 'tasa-warn' : 'tasa-bad';
-    const dot = r.es_pred
-      ? '<span class="dot-pred"></span>'
-      : '<span class="dot-real"></span>';
-    return `<tr>
-      <td>${dot}</td>
-      <td>${r.ds.substring(0,10)}</td>
-      <td>${r.Celula}</td>
-      <td>${r.Unidad}</td>
-      <td>${(r.ICFP||0).toFixed(4)}</td>
-      <td>${fmtNum(r.Kms_PO||0)}</td>
-      <td>${fmtNum(r.Kms_totales||0)}</td>
-      <td>${fmtNum(r.Km_valido||0)}</td>
-      <td class="${tasaClass}">${(tasa*100).toFixed(2)}%</td>
-    </tr>`;
+    const tasa = r.Tasa_vacio ?? (r.Km_valido>0 ? r.Kms_totales/r.Km_valido-1 : 0);
+    const tc   = tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
+    const dot  = r.es_pred ? '<span class="dot-pred"></span>' : '<span class="dot-real"></span>';
+    return `<tr><td>${dot}</td><td>${r.ds.substring(0,10)}</td><td>${r.Celula}</td>
+      <td>${r.Unidad}</td><td>${(r.ICFP||0).toFixed(4)}</td>
+      <td>${fmtNum(r.Kms_PO||0)}</td><td>${fmtNum(r.Kms_totales||0)}</td>
+      <td>${fmtNum(r.Km_valido||0)}</td><td class="${tc}">${(tasa*100).toFixed(2)}%</td></tr>`;
   }).join('');
-
-  document.getElementById('tablaDetalleBody').innerHTML = html || '<tr><td colspan="9" style="text-align:center;color:var(--text3);padding:24px">Sin datos para el período seleccionado</td></tr>';
+  document.getElementById('tablaDetalleBody').innerHTML = html ||
+    '<tr><td colspan="9" style="text-align:center;color:var(--text3);padding:24px">Sin datos para el período seleccionado</td></tr>';
 }
 
 // ── EXPORTAR CSV ──────────────────────────────────────────────
 function exportarCSV() {
   if (!DATA) return;
   const datos = getDatosFiltrados();
-  const ini = document.getElementById('fechaIni').value;
-  const fin = document.getElementById('fechaFin').value;
-
+  const ini   = document.getElementById('fechaIni').value;
+  const fin   = document.getElementById('fechaFin').value;
   const headers = ['tipo','fecha','celula','unidad','ICFP','Kms_PO','Kms_totales','Km_valido','Tasa_vacio'];
   const rows = datos.map(r => {
-    const tasa = r.Tasa_vacio ?? (r.Km_valido > 0 ? r.Kms_totales/r.Km_valido-1 : 0);
-    return [
-      r.es_pred ? 'prediccion' : 'real',
-      r.ds.substring(0,10),
-      r.Celula, r.Unidad,
-      (r.ICFP||0).toFixed(4),
-      Math.round(r.Kms_PO||0),
-      Math.round(r.Kms_totales||0),
-      Math.round(r.Km_valido||0),
-      tasa.toFixed(4),
-    ].join(';');
+    const tasa = r.Tasa_vacio ?? (r.Km_valido>0 ? r.Kms_totales/r.Km_valido-1 : 0);
+    return [r.es_pred?'prediccion':'real', r.ds.substring(0,10), r.Celula, r.Unidad,
+      (r.ICFP||0).toFixed(4), Math.round(r.Kms_PO||0), Math.round(r.Kms_totales||0),
+      Math.round(r.Km_valido||0), tasa.toFixed(4)].join(';');
   });
-
-  const content = [headers.join(';'), ...rows].join('\n');
-  const blob    = new Blob(['\uFEFF'+content], {type:'text/csv;charset=utf-8;'});
-  const a       = Object.assign(document.createElement('a'), {
-    href: URL.createObjectURL(blob),
-    download: `proyeccion_${ini}_${fin}.csv`
-  });
+  const blob = new Blob(['\uFEFF'+[headers.join(';'),...rows].join('\n')],{type:'text/csv;charset=utf-8;'});
+  const a = Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:`proyeccion_${ini}_${fin}.csv`});
   a.click(); URL.revokeObjectURL(a.href);
 }
 
 // ── UTILS ─────────────────────────────────────────────────────
 function fmtNum(n) { return Math.round(n).toLocaleString('es-CL'); }
-function setStatus(msg, type) {
+function setStatus(msg,type) {
   const el = document.getElementById('statusBar');
-  el.textContent = msg;
-  el.className   = `visible ${type}`;
+  el.textContent = msg; el.className = `visible ${type}`;
 }
 </script>
 </body>
