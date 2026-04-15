@@ -118,7 +118,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .chart-legend{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
 .chart-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
 .legend-line{width:16px;height:2px;border-radius:1px;}
-.legend-band{width:16px;height:8px;border-radius:2px;opacity:0.4;}
+
 .legend-vline{width:2px;height:10px;border-radius:1px;}
 .chart-wrap{position:relative;height:190px;}
 
@@ -599,16 +599,7 @@ function renderCharts(datos) {
     const dCel = datos.filter(r=>r.Celula===cel).sort((a,b)=>a.ds<b.ds?-1:1);
     if (!dCel.length) return;
 
-    // Buscar datos predichos con banda de incertidumbre del JSON original
-    const predOriginal = DATA.prediccion.filter(r => {
-      const ini = document.getElementById('fechaIni').value;
-      const fin = document.getElementById('fechaFin').value;
-      return r.Celula === cel && r.ds >= ini && r.ds <= fin;
-    });
-    const bandaMap = {};
-    predOriginal.forEach(r => {
-      if (r.Tasa_vacio_lo !== undefined) bandaMap[r.ds.substring(0,10)] = {lo: r.Tasa_vacio_lo, hi: r.Tasa_vacio_hi};
-    });
+
 
     // Índice donde empieza la predicción
     const idxCorte = dCel.findIndex(r => r.es_pred);
@@ -624,7 +615,7 @@ function renderCharts(datos) {
       <div class="chart-legend">
         <div class="chart-legend-item"><div class="legend-line" style="background:#00D4FF"></div>ICFP acum.</div>
         <div class="chart-legend-item"><div class="legend-line" style="background:#FF6B35;border-top:2px dashed #FF6B35;height:0"></div>Tasa vacío acum.</div>
-        <div class="chart-legend-item"><div class="legend-band" style="background:#FF6B35"></div>Intervalo 90%</div>
+
         ${p ? '<div class="chart-legend-item" style="color:var(--purple)">⚡ escenario</div>' : ''}
         ${idxCorte >= 0 ? '<div class="chart-legend-item"><div class="legend-vline" style="background:#FFB020"></div>Corte real/pred</div>' : ''}
       </div>
@@ -634,7 +625,7 @@ function renderCharts(datos) {
     let kmValAcum=0, kmPOAcum=0, kmTotAcum=0;
     let kmValScAcum=0, kmPOScAcum=0, kmTotScAcum=0;
     const labels=[], icfpAcum=[], tasaAcum=[], tasaScenAcum=[];
-    const bandaLo=[], bandaHi=[];
+
 
     dCel.forEach((r,i) => {
       const rAdj = p ? applyScenario(r, p) : r;
@@ -651,16 +642,6 @@ function renderCharts(datos) {
       tasaScenAcum.push(p && r.es_pred && kmValScAcum>0
         ? +((kmTotScAcum/kmValScAcum-1)*100).toFixed(2) : null);
 
-      // Banda: solo en días predichos, usamos tasa_vacio lower/upper si existe
-      // Si no existe en el JSON, dejamos null (no se renderiza)
-      if (r.es_pred) {
-        const bd = bandaMap[r.ds.substring(0,10)];
-        bandaLo.push(bd ? +(bd.lo*100).toFixed(2) : null);
-        bandaHi.push(bd ? +(bd.hi*100).toFixed(2) : null);
-      } else {
-        bandaLo.push(null);
-        bandaHi.push(null);
-      }
     });
 
     // Plugin línea vertical en corte real/pred
@@ -690,23 +671,7 @@ function renderCharts(datos) {
         borderColor:'#00D4FF', backgroundColor:'transparent',
         borderWidth:1.5, pointRadius:0, tension:0.3, order:1,
       },
-      // Banda inferior (invisible, solo para fill)
-      {
-        type:'line', label:'_lo',
-        data:bandaLo, yAxisID:'y2',
-        borderColor:'transparent', backgroundColor:'transparent',
-        pointRadius:0, tension:0.3, fill:false, order:3,
-      },
-      // Banda superior con fill hacia inferior
-      {
-        type:'line', label:'Intervalo 90%',
-        data:bandaHi, yAxisID:'y2',
-        borderColor:'transparent',
-        backgroundColor:'rgba(255,107,53,0.10)',
-        pointRadius:0, tension:0.3,
-        fill:{target:'-1', above:'rgba(255,107,53,0.10)'},
-        order:3,
-      },
+
       {
         type:'line', label:'Tasa vacío acum.',
         data:tasaAcum, yAxisID:'y2',
@@ -738,13 +703,13 @@ function renderCharts(datos) {
           tooltip:{
             backgroundColor:'#1E2330', borderColor:'#252A38', borderWidth:1,
             titleColor:'#E8ECF4', bodyColor:'#8892A4', titleFont:{size:11},
-            filter: item => item.dataset.label !== '_lo',
+
           }
         },
         scales:{
           x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
           y1:{position:'left', ticks:{color:'#00D4FF',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}},
-          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false},suggestedMin:0},
+          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false}},
         }
       },
       plugins:[corteLine],
