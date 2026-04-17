@@ -15,6 +15,7 @@
   --red:#FF4560;--red-dim:rgba(255,69,96,0.1);
   --amber:#FFB020;--amber-dim:rgba(255,176,32,0.1);
   --purple:#A78BFA;--purple-dim:rgba(167,139,250,0.1);
+  --teal:#00C9B1;--teal-dim:rgba(0,201,177,0.1);
   --text:#E8ECF4;--text2:#8892A4;--text3:#4A5268;
   --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
   --u17:#00D4FF;--u18:#FF6B35;
@@ -24,6 +25,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 
+/* HEADER */
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:12px;}
 .logo-mark{width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;color:#fff;}
@@ -33,8 +35,17 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .header-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-align:right;}
 .header-meta strong{color:var(--orange);display:block;}
 
+/* TABS */
+.tabs{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:0;}
+.tab{padding:12px 20px;font-size:12px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;letter-spacing:0.05em;text-transform:uppercase;}
+.tab:hover{color:var(--text2);}
+.tab.active{color:var(--text);border-bottom-color:var(--orange);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
 .container{max-width:1200px;margin:0 auto;padding:24px 24px 60px;}
 
+/* CONTROLS */
 .controls{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;}
 .ctrl-group{display:flex;flex-direction:column;gap:5px;}
 .ctrl-group label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;}
@@ -45,7 +56,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .btn-primary{background:var(--orange);color:#fff;}
 .btn-primary:hover{background:var(--orange2);}
 .btn-sec{background:var(--surface);border:1px solid var(--border2);color:var(--text2);}
-.btn-sec:hover{border-color:var(--border2);color:var(--text);background:var(--surface2);}
+.btn-sec:hover{color:var(--text);background:var(--surface2);}
 .btn-export{background:var(--green-dim);border:1px solid rgba(0,229,160,0.25);color:var(--green);}
 .btn-export:hover{background:rgba(0,229,160,0.18);}
 .btn-scenario{background:var(--purple-dim);border:1px solid rgba(167,139,250,0.25);color:var(--purple);}
@@ -61,15 +72,14 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 /* PANEL SUPUESTOS */
 .scenario-panel{background:var(--bg2);border:1px solid rgba(167,139,250,0.25);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:none;}
 .scenario-panel.open{display:block;}
-.scenario-title{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.scenario-title{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
 .scenario-desc{font-size:11px;color:var(--text3);margin-bottom:18px;}
 .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .scenario-ctrl{display:flex;flex-direction:column;gap:8px;}
 .scenario-ctrl label{font-size:10px;font-weight:500;color:var(--text2);letter-spacing:0.08em;text-transform:uppercase;}
 .slider-row{display:flex;align-items:center;gap:10px;}
 .slider-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;background:var(--surface2);border-radius:2px;outline:none;cursor:pointer;}
-.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--purple);cursor:pointer;transition:transform 0.1s;}
-.slider-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--purple);cursor:pointer;}
 .slider-val{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--purple);min-width:52px;text-align:right;}
 .scenario-impact{background:var(--surface);border-radius:8px;padding:12px 16px;margin-top:16px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
 .scenario-impact-item{display:flex;flex-direction:column;gap:2px;}
@@ -79,8 +89,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .impact-bad{color:var(--red);}
 .impact-good{color:var(--green);}
 .scenario-reset{font-size:11px;color:var(--text3);cursor:pointer;text-decoration:underline;margin-left:auto;}
-.scenario-reset:hover{color:var(--text2);}
 
+/* KPIs */
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
 .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;transition:border-color 0.2s;}
 .kpi-label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
@@ -91,10 +101,17 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .kpi.cyan .kpi-val{color:var(--cyan);}
 .kpi.green .kpi-val{color:var(--green);}
 .kpi.amber .kpi-val{color:var(--amber);}
+.kpi.teal .kpi-val{color:var(--teal);}
+.kpi.purple .kpi-val{color:var(--purple);}
 .kpi.scenario-active{border-color:rgba(167,139,250,0.35);}
+
+/* IE KPI row — 2 cols principales + 2 secundarias */
+.kpi-row-ie{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
 
 .section-title{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* RESUMEN TABLE */
 .resumen-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;}
 .resumen-table th{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);}
 .resumen-table th:first-child,.resumen-table th:nth-child(2){text-align:left;}
@@ -104,11 +121,17 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .resumen-table tr.subtotal td{background:var(--surface);font-weight:600;border-top:1px solid var(--border2);}
 .resumen-table tr.total-empresa td{background:var(--surface2);font-weight:600;color:var(--text);border-top:2px solid var(--border2);}
 .resumen-table tr.subtotal td:first-child,.resumen-table tr.total-empresa td:first-child{border-left:3px solid var(--orange);}
+.resumen-table tr.subtotal-ie td:first-child,.resumen-table tr.total-ie td:first-child{border-left:3px solid var(--teal);}
+.resumen-table tr.total-ie td{background:var(--surface2);font-weight:600;color:var(--text);border-top:2px solid var(--border2);}
+.resumen-table tr.subtotal-ie td{background:var(--surface);font-weight:600;border-top:1px solid var(--border2);}
 .badge-u17{background:rgba(0,212,255,0.12);color:var(--u17);border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;font-family:'IBM Plex Mono',monospace;}
 .badge-u18{background:rgba(255,107,53,0.12);color:var(--u18);border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;font-family:'IBM Plex Mono',monospace;}
 .tasa-good{color:var(--green);}
 .tasa-warn{color:var(--amber);}
 .tasa-bad{color:var(--red);}
+.ie-good{color:var(--green);}
+.ie-warn{color:var(--amber);}
+.ie-bad{color:var(--red);}
 
 /* CHARTS */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
@@ -118,10 +141,10 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .chart-legend{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
 .chart-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
 .legend-line{width:16px;height:2px;border-radius:1px;}
-
 .legend-vline{width:2px;height:10px;border-radius:1px;}
 .chart-wrap{position:relative;height:190px;}
 
+/* DETALLE */
 .detalle-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
 .detalle-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .detalle-scroll{overflow-x:auto;max-height:340px;overflow-y:auto;}
@@ -134,6 +157,11 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .dot-pred{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block;margin-right:4px;vertical-align:middle;}
 .dot-real{width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;margin-right:4px;vertical-align:middle;}
 
+/* INFO NOTA */
+.info-nota{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--text3);margin-bottom:16px;}
+.info-nota strong{color:var(--text2);}
+
+/* UPLOAD */
 .upload-zone{border:2px dashed var(--border2);border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all 0.15s;margin-bottom:20px;}
 .upload-zone:hover,.upload-zone.drag{border-color:var(--orange);background:var(--orange-dim);}
 .upload-zone input{display:none;}
@@ -142,7 +170,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .upload-hint{font-size:11px;color:var(--text3);margin-top:4px;}
 
 @media(max-width:768px){
-  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  .kpi-row,.kpi-row-ie{grid-template-columns:repeat(2,1fr);}
   .charts-grid{grid-template-columns:1fr;}
   .scenario-grid{grid-template-columns:1fr;}
 }
@@ -159,13 +187,20 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
     </div>
   </div>
   <div class="header-meta">
-    <strong id="metaEstrategia">—</strong>
-    <span id="metaGenerado">Sin datos cargados</span>
+    <strong id="metaGenerado">Sin datos cargados</strong>
+    <span id="metaFechas">—</span>
   </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabsBar" style="display:none">
+  <div class="tab active" onclick="switchTab('km')" id="tabKm">📦 Km Vacío</div>
+  <div class="tab" onclick="switchTab('ie')" id="tabIe">📊 Calidad de Servicio</div>
 </div>
 
 <div class="container">
 
+  <!-- UPLOAD -->
   <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
     ondragover="event.preventDefault();this.classList.add('drag')"
     ondragleave="this.classList.remove('drag')"
@@ -178,6 +213,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 
   <div id="statusBar"></div>
 
+  <!-- CONTROLS COMPARTIDOS -->
   <div class="controls" id="controls" style="display:none">
     <div class="ctrl-group">
       <label>Fecha inicio</label>
@@ -206,142 +242,213 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
     <button class="btn btn-sec" onclick="resetFiltros()">↺ Reset</button>
   </div>
 
-  <!-- PANEL SUPUESTOS -->
-  <div class="scenario-panel" id="scenarioPanel">
-    <div class="scenario-title">⚡ Análisis de supuestos</div>
-    <div class="scenario-desc">
-      Ajusta los parámetros para ver cómo cambia la tasa vacío proyectada. Los cálculos se aplican
-      solo a los días predichos, usando la identidad: Km vacío = Km total − (ICFP ajustado × Km PO ajustado).
-    </div>
-    <div class="scenario-grid">
-      <div class="scenario-ctrl">
-        <label>Δ ICFP (puntos porcentuales)</label>
-        <div class="slider-row">
-          <input type="range" id="sliderICFP" min="-10" max="5" step="0.5" value="0"
-                 oninput="actualizarScenario()">
-          <span class="slider-val" id="valICFP">0.0 pp</span>
-        </div>
-        <div style="font-size:10px;color:var(--text3);margin-top:2px">
-          Ej: −2 pp → si el ICFP cae 2 puntos porcentuales respecto a lo predicho
-        </div>
-      </div>
-      <div class="scenario-ctrl">
-        <label>Δ Km PO (%)</label>
-        <div class="slider-row">
-          <input type="range" id="sliderKmPO" min="-15" max="15" step="0.5" value="0"
-                 oninput="actualizarScenario()">
-          <span class="slider-val" id="valKmPO">0.0%</span>
-        </div>
-        <div style="font-size:10px;color:var(--text3);margin-top:2px">
-          Ej: +5% → si se ejecuta más PO del proyectado
-        </div>
-      </div>
-      <div class="scenario-ctrl">
-        <label>Δ Km Total (%)</label>
-        <div class="slider-row">
-          <input type="range" id="sliderKmTot" min="-15" max="15" step="0.5" value="0"
-                 oninput="actualizarScenario()">
-          <span class="slider-val" id="valKmTot">0.0%</span>
-        </div>
-        <div style="font-size:10px;color:var(--text3);margin-top:2px">
-          Ej: −3% → si el km total baja respecto a lo proyectado
-        </div>
-      </div>
-    </div>
-    <div class="scenario-impact" id="scenarioImpact">
-      <div class="scenario-impact-item">
-        <span class="scenario-impact-label">Tasa vacío base</span>
-        <span class="scenario-impact-val impact-neutral" id="siTasaBase">—</span>
-      </div>
-      <div style="font-size:18px;color:var(--text3)">→</div>
-      <div class="scenario-impact-item">
-        <span class="scenario-impact-label">Tasa vacío escenario</span>
-        <span class="scenario-impact-val" id="siTasaScenario">—</span>
-      </div>
-      <div class="scenario-impact-item">
-        <span class="scenario-impact-label">Δ Km vacío (predichos)</span>
-        <span class="scenario-impact-val" id="siDeltaKm">—</span>
-      </div>
-      <div class="scenario-impact-item">
-        <span class="scenario-impact-label">Δ Km vacío / semana</span>
-        <span class="scenario-impact-val" id="siDeltaSemana">—</span>
-      </div>
-      <span class="scenario-reset" onclick="resetScenario()">↺ Resetear supuestos</span>
-    </div>
-  </div>
+  <!-- ════════════════════════════════════════ -->
+  <!-- PANEL KM VACÍO -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="tab-panel active" id="panelKm">
 
-  <div id="dashboard" style="display:none">
-
-    <div class="kpi-row">
-      <div class="kpi orange" id="kpiCardTotal">
-        <div class="kpi-label">Km Total</div>
-        <div class="kpi-val" id="kpiKmTotal">—</div>
-        <div class="kpi-sub" id="kpiKmTotalSub">período seleccionado</div>
-        <div class="kpi-scenario" id="kpiKmTotalScen" style="display:none"></div>
+    <!-- SUPUESTOS -->
+    <div class="scenario-panel" id="scenarioPanel">
+      <div class="scenario-title">⚡ Análisis de supuestos</div>
+      <div class="scenario-desc">Ajusta los parámetros para ver cómo cambia la tasa vacío proyectada. Solo aplica a días predichos.</div>
+      <div class="scenario-grid">
+        <div class="scenario-ctrl">
+          <label>Δ ICFP (puntos porcentuales)</label>
+          <div class="slider-row">
+            <input type="range" id="sliderICFP" min="-10" max="5" step="0.5" value="0" oninput="actualizarScenario()">
+            <span class="slider-val" id="valICFP">0.0 pp</span>
+          </div>
+        </div>
+        <div class="scenario-ctrl">
+          <label>Δ Km PO (%)</label>
+          <div class="slider-row">
+            <input type="range" id="sliderKmPO" min="-15" max="15" step="0.5" value="0" oninput="actualizarScenario()">
+            <span class="slider-val" id="valKmPO">0.0%</span>
+          </div>
+        </div>
+        <div class="scenario-ctrl">
+          <label>Δ Km Total (%)</label>
+          <div class="slider-row">
+            <input type="range" id="sliderKmTot" min="-15" max="15" step="0.5" value="0" oninput="actualizarScenario()">
+            <span class="slider-val" id="valKmTot">0.0%</span>
+          </div>
+        </div>
       </div>
-      <div class="kpi cyan">
-        <div class="kpi-label">Km Válido</div>
-        <div class="kpi-val" id="kpiKmValido">—</div>
-        <div class="kpi-sub">ICFP × Km PO</div>
-        <div class="kpi-scenario" id="kpiKmValidoScen" style="display:none"></div>
-      </div>
-      <div class="kpi green">
-        <div class="kpi-label">ICFP Acumulado</div>
-        <div class="kpi-val" id="kpiICFP">—</div>
-        <div class="kpi-sub">Km válido / Km PO</div>
-        <div class="kpi-scenario" id="kpiICFPScen" style="display:none"></div>
-      </div>
-      <div class="kpi amber" id="kpiCardTasa">
-        <div class="kpi-label">Tasa Vacío</div>
-        <div class="kpi-val" id="kpiTasa">—</div>
-        <div class="kpi-sub">Km total / Km válido − 1</div>
-        <div class="kpi-scenario" id="kpiTasaScen" style="display:none"></div>
+      <div class="scenario-impact">
+        <div class="scenario-impact-item">
+          <span class="scenario-impact-label">Tasa vacío base</span>
+          <span class="scenario-impact-val impact-neutral" id="siTasaBase">—</span>
+        </div>
+        <div style="font-size:18px;color:var(--text3)">→</div>
+        <div class="scenario-impact-item">
+          <span class="scenario-impact-label">Tasa vacío escenario</span>
+          <span class="scenario-impact-val" id="siTasaScenario">—</span>
+        </div>
+        <div class="scenario-impact-item">
+          <span class="scenario-impact-label">Δ Km vacío (predichos)</span>
+          <span class="scenario-impact-val" id="siDeltaKm">—</span>
+        </div>
+        <div class="scenario-impact-item">
+          <span class="scenario-impact-label">Δ Km vacío / semana</span>
+          <span class="scenario-impact-val" id="siDeltaSemana">—</span>
+        </div>
+        <span class="scenario-reset" onclick="resetScenario()">↺ Resetear supuestos</span>
       </div>
     </div>
 
-    <div class="section-title">Resumen por unidad y célula</div>
-    <table class="resumen-table" id="tablaResumen">
-      <thead>
-        <tr>
+    <div id="dashboardKm" style="display:none">
+      <div class="kpi-row">
+        <div class="kpi orange" id="kpiCardTotal">
+          <div class="kpi-label">Km Total</div>
+          <div class="kpi-val" id="kpiKmTotal">—</div>
+          <div class="kpi-sub" id="kpiKmTotalSub">período seleccionado</div>
+          <div class="kpi-scenario" id="kpiKmTotalScen" style="display:none"></div>
+        </div>
+        <div class="kpi cyan">
+          <div class="kpi-label">Km Válido</div>
+          <div class="kpi-val" id="kpiKmValido">—</div>
+          <div class="kpi-sub">ICFP × Km PO</div>
+          <div class="kpi-scenario" id="kpiKmValidoScen" style="display:none"></div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-label">ICFP Acumulado</div>
+          <div class="kpi-val" id="kpiICFP">—</div>
+          <div class="kpi-sub">Km válido / Km PO</div>
+          <div class="kpi-scenario" id="kpiICFPScen" style="display:none"></div>
+        </div>
+        <div class="kpi amber" id="kpiCardTasa">
+          <div class="kpi-label">Tasa Vacío</div>
+          <div class="kpi-val" id="kpiTasa">—</div>
+          <div class="kpi-sub">Km total / Km válido − 1</div>
+          <div class="kpi-scenario" id="kpiTasaScen" style="display:none"></div>
+        </div>
+      </div>
+
+      <div class="section-title">Resumen por unidad y célula</div>
+      <table class="resumen-table">
+        <thead><tr>
           <th>Unidad</th><th>Célula</th><th>Km Total</th>
           <th>Km Válido</th><th>ICFP</th><th>Tasa Vacío</th><th>Días pred.</th>
-        </tr>
-      </thead>
-      <tbody id="tablaResumenBody"></tbody>
-    </table>
+        </tr></thead>
+        <tbody id="tablaResumenBody"></tbody>
+      </table>
 
-    <div class="section-title">Evolución diaria</div>
-    <div class="charts-grid" id="chartsGrid"></div>
+      <div class="section-title">Evolución diaria</div>
+      <div class="charts-grid" id="chartsGrid"></div>
 
-    <div class="section-title">Detalle diario</div>
-    <div class="detalle-wrap">
-      <div class="detalle-header">
-        <div style="font-size:12px;color:var(--text2)">
-          <span class="dot-real"></span> Real SIR &nbsp;
-          <span class="dot-pred"></span> Predicción Prophet
+      <div class="section-title">Detalle diario</div>
+      <div class="detalle-wrap">
+        <div class="detalle-header">
+          <div style="font-size:12px;color:var(--text2)">
+            <span class="dot-real"></span> Real SIR &nbsp;
+            <span class="dot-pred"></span> Predicción Prophet
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3)" id="detalleCount">—</div>
         </div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3)" id="detalleCount">—</div>
-      </div>
-      <div class="detalle-scroll">
-        <table class="detalle-table">
-          <thead>
-            <tr>
+        <div class="detalle-scroll">
+          <table class="detalle-table">
+            <thead><tr>
               <th>Tipo</th><th>Fecha</th><th>Célula</th><th>Unidad</th>
               <th>ICFP</th><th>Km PO</th><th>Km Total</th><th>Km Válido</th><th>Tasa Vacío</th>
-            </tr>
-          </thead>
-          <tbody id="tablaDetalleBody"></tbody>
-        </table>
+            </tr></thead>
+            <tbody id="tablaDetalleBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
+  </div><!-- /panelKm -->
 
-  </div>
-</div>
+  <!-- ════════════════════════════════════════ -->
+  <!-- PANEL CALIDAD DE SERVICIO -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="tab-panel" id="panelIe">
+    <div id="dashboardIe" style="display:none">
+
+      <div class="info-nota">
+        <strong>Nota metodológica:</strong> IE e IP se promedian para el período seleccionado.
+        Eficiencia = horas conduciendo / horas trabajadas. %Hrs Asignadas = horas utilizadas / horas planificadas.
+        Incluye datos reales (SIR) y predicción Prophet.
+      </div>
+
+      <!-- KPIs IE -->
+      <div class="kpi-row-ie">
+        <div class="kpi teal">
+          <div class="kpi-label">IE Promedio</div>
+          <div class="kpi-val" id="kpiIE">—</div>
+          <div class="kpi-sub" id="kpiIESub">Índice de Evasión</div>
+        </div>
+        <div class="kpi purple">
+          <div class="kpi-label">IP Promedio</div>
+          <div class="kpi-val" id="kpiIP">—</div>
+          <div class="kpi-sub">Índice de Puntualidad</div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-label">Eficiencia</div>
+          <div class="kpi-val" id="kpiEfi">—</div>
+          <div class="kpi-sub">Hrs conduciendo / trabajadas</div>
+        </div>
+        <div class="kpi amber">
+          <div class="kpi-label">% Hrs Asignadas</div>
+          <div class="kpi-val" id="kpiHrs">—</div>
+          <div class="kpi-sub">Hrs utilizadas / planificadas</div>
+        </div>
+      </div>
+
+      <div class="section-title">Resumen por unidad y célula</div>
+      <table class="resumen-table">
+        <thead><tr>
+          <th>Unidad</th><th>Célula</th>
+          <th>IE</th><th>IP</th><th>Eficiencia</th><th>% Hrs Asig.</th><th>Días pred.</th>
+        </tr></thead>
+        <tbody id="tablaResumenIeBody"></tbody>
+      </table>
+
+      <div class="section-title">Evolución diaria — IE e IP</div>
+      <div class="charts-grid" id="chartsGridIe"></div>
+
+      <div class="section-title">Evolución diaria — Eficiencia y Hrs Asignadas</div>
+      <div class="charts-grid" id="chartsGridEfi"></div>
+
+      <div class="section-title">Detalle diario</div>
+      <div class="detalle-wrap">
+        <div class="detalle-header">
+          <div style="font-size:12px;color:var(--text2)">
+            <span class="dot-real"></span> Real SIR &nbsp;
+            <span class="dot-pred"></span> Predicción Prophet
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3)" id="detalleIeCount">—</div>
+        </div>
+        <div class="detalle-scroll">
+          <table class="detalle-table">
+            <thead><tr>
+              <th>Tipo</th><th>Fecha</th><th>Célula</th><th>Unidad</th>
+              <th>IE</th><th>IP</th><th>Eficiencia</th><th>% Hrs Asig.</th>
+            </tr></thead>
+            <tbody id="tablaDetalleIeBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panelIe -->
+
+</div><!-- /container -->
 
 <script>
 let DATA = null;
 let mapaUnidad = {};
 let scenarioOpen = false;
+let tabActual = 'km';
+let chartsKm = {}, chartsIe = {}, chartsEfi = {};
+
+// ── TABS ──────────────────────────────────────────────────────
+function switchTab(tab) {
+  tabActual = tab;
+  document.getElementById('tabKm').classList.toggle('active', tab==='km');
+  document.getElementById('tabIe').classList.toggle('active', tab==='ie');
+  document.getElementById('panelKm').classList.toggle('active', tab==='km');
+  document.getElementById('panelIe').classList.toggle('active', tab==='ie');
+  if (DATA) actualizar();
+}
 
 // ── CARGA ─────────────────────────────────────────────────────
 function handleDrop(e) {
@@ -360,26 +467,39 @@ function loadFile(file) {
   };
   reader.readAsText(file);
 }
+
 function inicializar() {
   const m = DATA.meta;
   DATA.mapa_unidad.forEach(r => { mapaUnidad[r.Celula] = r.Unidad; });
-  document.getElementById('metaEstrategia').textContent = `Estrategia: ${m.estrategia}`;
-  document.getElementById('metaGenerado').textContent   = `Generado: ${m.generado}`;
+  document.getElementById('metaGenerado').textContent = `Generado: ${m.generado}`;
+  document.getElementById('metaFechas').textContent   = `Real: ${m.fecha_min_real} → ${m.fecha_max_real}`;
+
   const selCel = document.getElementById('filtroCelula');
   const selUni = document.getElementById('filtroUnidad');
   selCel.innerHTML = '<option value="todas">Todas</option>';
   selUni.innerHTML = '<option value="todas">Todas</option>';
   m.celulas.forEach(c  => { selCel.innerHTML += `<option value="${c}">${c}</option>`; });
   m.unidades.forEach(u => { selUni.innerHTML += `<option value="${u}">${u}</option>`; });
+
   const anio = new Date().getFullYear();
   const mes  = String(new Date().getMonth()+1).padStart(2,'0');
   const lastDay = new Date(anio, new Date().getMonth()+1, 0).getDate().toString().padStart(2,'0');
   document.getElementById('fechaIni').value = `${anio}-${mes}-01`;
   document.getElementById('fechaFin').value = `${anio}-${mes}-${lastDay}`;
+
   document.getElementById('uploadZone').style.display = 'none';
-  document.getElementById('controls').style.display   = 'flex';
-  document.getElementById('dashboard').style.display  = 'block';
-  setStatus(`✅ Datos cargados — ${DATA.real.length.toLocaleString()} días reales | ${DATA.prediccion.length.toLocaleString()} días predichos`,'ok');
+  document.getElementById('tabsBar').style.display    = 'flex';
+  document.getElementById('controls').style.display  = 'flex';
+  document.getElementById('dashboardKm').style.display = 'block';
+  document.getElementById('dashboardIe').style.display = 'block';
+
+  const hasIe = DATA.real_ie && DATA.real_ie.length > 0;
+  document.getElementById('tabIe').style.display = hasIe ? 'block' : 'none';
+
+  const nReal = (DATA.real||[]).length;
+  const nPred = (DATA.prediccion||[]).length;
+  const nIe   = (DATA.real_ie||[]).length;
+  setStatus(`✅ Datos cargados — ${nReal.toLocaleString()} días reales km | ${nPred.toLocaleString()} predichos | ${nIe.toLocaleString()} días reales IE`,'ok');
   actualizar();
 }
 
@@ -389,7 +509,7 @@ function getDatosFiltrados() {
   const fin    = document.getElementById('fechaFin').value;
   const celula = document.getElementById('filtroCelula').value;
   const unidad = document.getElementById('filtroUnidad').value;
-  const filtrar = (arr, esPred) => arr.filter(r => {
+  const filtrar = (arr, esPred) => (arr||[]).filter(r => {
     const ds = r.ds.substring(0,10);
     if (ds < ini || ds > fin) return false;
     if (celula !== 'todas' && r.Celula !== celula) return false;
@@ -400,6 +520,24 @@ function getDatosFiltrados() {
   return [...filtrar(DATA.real,false), ...filtrar(DATA.prediccion,true)]
     .sort((a,b) => a.ds < b.ds ? -1 : 1);
 }
+
+function getDatosFiltradosIe() {
+  const ini    = document.getElementById('fechaIni').value;
+  const fin    = document.getElementById('fechaFin').value;
+  const celula = document.getElementById('filtroCelula').value;
+  const unidad = document.getElementById('filtroUnidad').value;
+  const filtrar = (arr, esPred) => (arr||[]).filter(r => {
+    const ds = r.ds.substring(0,10);
+    if (ds < ini || ds > fin) return false;
+    if (celula !== 'todas' && r.Celula !== celula) return false;
+    const u = mapaUnidad[r.Celula] || r.Unidad || '?';
+    if (unidad !== 'todas' && u !== unidad) return false;
+    return true;
+  }).map(r => ({...r, es_pred: esPred, Unidad: mapaUnidad[r.Celula] || r.Unidad || '?'}));
+  return [...filtrar(DATA.real_ie,false), ...filtrar(DATA.prediccion_ie,true)]
+    .sort((a,b) => a.ds < b.ds ? -1 : 1);
+}
+
 function resetFiltros() {
   document.getElementById('filtroCelula').value = 'todas';
   document.getElementById('filtroUnidad').value = 'todas';
@@ -429,68 +567,66 @@ function getScenarioParams() {
 function applyScenario(r, params) {
   if (!r.es_pred) return r;
   const icfpAdj  = Math.max(0, (r.ICFP||0) + params.deltaICFP);
-  const kmPOAdj  = (r.Kms_PO||0)       * (1 + params.deltaKmPO);
-  const kmTotAdj = (r.Kms_totales||0)  * (1 + params.deltaKmTot);
+  const kmPOAdj  = (r.Kms_PO||0)      * (1 + params.deltaKmPO);
+  const kmTotAdj = (r.Kms_totales||0) * (1 + params.deltaKmTot);
   const kmValAdj = icfpAdj * kmPOAdj;
   const tasaAdj  = kmValAdj > 0 ? kmTotAdj / kmValAdj - 1 : 0;
   return {...r, ICFP: icfpAdj, Kms_PO: kmPOAdj, Kms_totales: kmTotAdj,
-               Km_valido: kmValAdj, Tasa_vacio: tasaAdj, _scenario: true};
+               Km_valido: kmValAdj, Tasa_vacio: tasaAdj};
 }
 function actualizarScenario() {
   const p = getScenarioParams();
-  // Labels
   document.getElementById('valICFP').textContent  = (p.deltaICFP*100).toFixed(1) + ' pp';
   document.getElementById('valKmPO').textContent  = (p.deltaKmPO*100).toFixed(1) + '%';
   document.getElementById('valKmTot').textContent = (p.deltaKmTot*100).toFixed(1) + '%';
-
-  const datos  = getDatosFiltrados();
+  const datos    = getDatosFiltrados();
   const predRows = datos.filter(r => r.es_pred);
-  const nDias  = predRows.length;
-
-  // Base
-  const kmValBase  = predRows.reduce((s,r) => s + (r.Km_valido||0), 0);
-  const kmTotBase  = predRows.reduce((s,r) => s + (r.Kms_totales||0), 0);
-  const tasaBase   = kmValBase > 0 ? kmTotBase / kmValBase - 1 : 0;
-
-  // Escenario
-  const adj = predRows.map(r => applyScenario(r, p));
-  const kmValAdj  = adj.reduce((s,r) => s + r.Km_valido, 0);
-  const kmTotAdj  = adj.reduce((s,r) => s + r.Kms_totales, 0);
-  const tasaAdj   = kmValAdj > 0 ? kmTotAdj / kmValAdj - 1 : 0;
-  const deltaKmVac = (kmTotAdj - kmValAdj) - (kmTotBase - kmValBase);
-  const deltaKmSem = nDias > 0 ? deltaKmVac / nDias * 7 : 0;
-
-  const noChange = p.deltaICFP === 0 && p.deltaKmPO === 0 && p.deltaKmTot === 0;
-  const diff = tasaAdj - tasaBase;
-  const cls  = noChange ? 'impact-neutral' : diff > 0 ? 'impact-bad' : 'impact-good';
-
+  const nDias    = predRows.length;
+  const kmValBase = predRows.reduce((s,r) => s+(r.Km_valido||0),0);
+  const kmTotBase = predRows.reduce((s,r) => s+(r.Kms_totales||0),0);
+  const tasaBase  = kmValBase > 0 ? kmTotBase/kmValBase-1 : 0;
+  const adj = predRows.map(r => applyScenario(r,p));
+  const kmValAdj = adj.reduce((s,r) => s+r.Km_valido,0);
+  const kmTotAdj = adj.reduce((s,r) => s+r.Kms_totales,0);
+  const tasaAdj  = kmValAdj > 0 ? kmTotAdj/kmValAdj-1 : 0;
+  const deltaKmVac = (kmTotAdj-kmValAdj)-(kmTotBase-kmValBase);
+  const deltaKmSem = nDias > 0 ? deltaKmVac/nDias*7 : 0;
+  const noChange = p.deltaICFP===0 && p.deltaKmPO===0 && p.deltaKmTot===0;
+  const diff = tasaAdj-tasaBase;
+  const cls  = noChange?'impact-neutral':diff>0?'impact-bad':'impact-good';
   document.getElementById('siTasaBase').textContent     = (tasaBase*100).toFixed(2)+'%';
   document.getElementById('siTasaScenario').textContent = (tasaAdj*100).toFixed(2)+'%';
   document.getElementById('siTasaScenario').className   = 'scenario-impact-val '+cls;
-  document.getElementById('siDeltaKm').textContent      = (deltaKmVac >= 0 ? '+' : '') + fmtNum(deltaKmVac) + ' km';
+  document.getElementById('siDeltaKm').textContent      = (deltaKmVac>=0?'+':'')+fmtNum(deltaKmVac)+' km';
   document.getElementById('siDeltaKm').className        = 'scenario-impact-val '+(noChange?'impact-neutral':deltaKmVac>0?'impact-bad':'impact-good');
-  document.getElementById('siDeltaSemana').textContent  = (deltaKmSem >= 0 ? '+' : '') + fmtNum(deltaKmSem) + ' km';
+  document.getElementById('siDeltaSemana').textContent  = (deltaKmSem>=0?'+':'')+fmtNum(deltaKmSem)+' km';
   document.getElementById('siDeltaSemana').className    = 'scenario-impact-val '+(noChange?'impact-neutral':deltaKmSem>0?'impact-bad':'impact-good');
-
-  // Actualizar KPIs con escenario
-  const hasScenario = !noChange;
-  renderKPIsScenario(datos, p, hasScenario);
-  renderCharts(datos);
+  renderKPIsScenario(datos, p, !noChange);
+  renderChartsKm(datos);
 }
 
 // ── ACTUALIZAR ────────────────────────────────────────────────
 function actualizar() {
   if (!DATA) return;
-  const datos = getDatosFiltrados();
-  renderKPIs(datos);
-  renderResumen(datos);
-  renderCharts(datos);
-  renderDetalle(datos);
-  if (scenarioOpen) actualizarScenario();
+  if (tabActual === 'km') {
+    const datos = getDatosFiltrados();
+    renderKPIsKm(datos);
+    renderResumenKm(datos);
+    renderChartsKm(datos);
+    renderDetalleKm(datos);
+    if (scenarioOpen) actualizarScenario();
+  } else {
+    const datosIe = getDatosFiltradosIe();
+    renderKPIsIe(datosIe);
+    renderResumenIe(datosIe);
+    renderChartsIe(datosIe);
+    renderChartsEfi(datosIe);
+    renderDetalleIe(datosIe);
+  }
 }
 
-// ── KPIs ──────────────────────────────────────────────────────
-function renderKPIs(datos) {
+// ── KPIs KM ───────────────────────────────────────────────────
+function renderKPIsKm(datos) {
   const kmTot = datos.reduce((s,r) => s+(r.Kms_totales||0),0);
   const kmPO  = datos.reduce((s,r) => s+(r.Kms_PO||0),0);
   const kmVal = datos.reduce((s,r) => s+(r.Km_valido||0),0);
@@ -503,69 +639,81 @@ function renderKPIs(datos) {
   document.getElementById('kpiICFP').textContent     = icfp.toFixed(4);
   document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2)+'%';
   document.getElementById('kpiKmTotalSub').textContent = `${nReal} días reales · ${nPred} predichos`;
-  // Ocultar etiquetas de escenario
   ['kpiKmTotalScen','kpiKmValidoScen','kpiICFPScen','kpiTasaScen'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
+    document.getElementById(id).style.display='none';
   });
   ['kpiCardTotal','kpiCardTasa'].forEach(id => {
     document.getElementById(id).classList.remove('scenario-active');
   });
 }
 function renderKPIsScenario(datos, p, hasScenario) {
-  const adjDatos = datos.map(r => applyScenario(r, p));
-  const kmTot = adjDatos.reduce((s,r) => s+(r.Kms_totales||0),0);
-  const kmPO  = adjDatos.reduce((s,r) => s+(r.Kms_PO||0),0);
-  const kmVal = adjDatos.reduce((s,r) => s+(r.Km_valido||0),0);
+  if (!hasScenario) return;
+  const adj = datos.map(r => applyScenario(r,p));
+  const kmTot = adj.reduce((s,r) => s+(r.Kms_totales||0),0);
+  const kmPO  = adj.reduce((s,r) => s+(r.Kms_PO||0),0);
+  const kmVal = adj.reduce((s,r) => s+(r.Km_valido||0),0);
   const icfp  = kmPO > 0 ? kmVal/kmPO : 0;
   const tasa  = kmVal > 0 ? kmTot/kmVal-1 : 0;
-
-  if (hasScenario) {
-    document.getElementById('kpiKmTotal').textContent  = fmtNum(kmTot);
-    document.getElementById('kpiKmValido').textContent = fmtNum(kmVal);
-    document.getElementById('kpiICFP').textContent     = icfp.toFixed(4);
-    document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2)+'%';
-    const scen = document.getElementById('kpiTasaScen');
-    scen.textContent = '⚡ escenario activo';
-    scen.style.display = 'block';
-    scen.style.color = 'var(--purple)';
-    ['kpiCardTotal','kpiCardTasa'].forEach(id => {
-      document.getElementById(id).classList.add('scenario-active');
-    });
-  }
+  document.getElementById('kpiKmTotal').textContent  = fmtNum(kmTot);
+  document.getElementById('kpiKmValido').textContent = fmtNum(kmVal);
+  document.getElementById('kpiICFP').textContent     = icfp.toFixed(4);
+  document.getElementById('kpiTasa').textContent     = (tasa*100).toFixed(2)+'%';
+  const scen = document.getElementById('kpiTasaScen');
+  scen.textContent = '⚡ escenario activo';
+  scen.style.display = 'block';
+  scen.style.color = 'var(--purple)';
+  ['kpiCardTotal','kpiCardTasa'].forEach(id => document.getElementById(id).classList.add('scenario-active'));
 }
 
-// ── RESUMEN ───────────────────────────────────────────────────
-function renderResumen(datos) {
+// ── KPIs IE ───────────────────────────────────────────────────
+function renderKPIsIe(datos) {
+  if (!datos.length) return;
+  const ie  = datos.map(r=>r.IE||0).filter(v=>v>0);
+  const ip  = datos.map(r=>r.IP||0).filter(v=>v>0);
+  const efi = datos.map(r=>r.Eficiencia||0).filter(v=>v>0);
+  const hrs = datos.map(r=>r['%hrsAsignadas']||0).filter(v=>v>0);
+  const avg = arr => arr.length ? arr.reduce((s,v)=>s+v,0)/arr.length : 0;
+  const nPred = datos.filter(r=>r.es_pred).length;
+  const nReal = datos.filter(r=>!r.es_pred).length;
+  document.getElementById('kpiIE').textContent  = avg(ie).toFixed(4);
+  document.getElementById('kpiIP').textContent  = avg(ip).toFixed(4);
+  document.getElementById('kpiEfi').textContent = (avg(efi)*100).toFixed(1)+'%';
+  document.getElementById('kpiHrs').textContent = (avg(hrs)*100).toFixed(1)+'%';
+  document.getElementById('kpiIESub').textContent = `${nReal} días reales · ${nPred} predichos`;
+}
+
+// ── RESUMEN KM ────────────────────────────────────────────────
+function renderResumenKm(datos) {
   const grupos = {};
   datos.forEach(r => {
     const k = `${r.Unidad}||${r.Celula}`;
-    if (!grupos[k]) grupos[k] = {Unidad:r.Unidad,Celula:r.Celula,kmTot:0,kmPO:0,kmVal:0,nPred:0,nReal:0};
+    if (!grupos[k]) grupos[k]={Unidad:r.Unidad,Celula:r.Celula,kmTot:0,kmPO:0,kmVal:0,nPred:0};
     grupos[k].kmTot += r.Kms_totales||0;
     grupos[k].kmPO  += r.Kms_PO||0;
     grupos[k].kmVal += r.Km_valido||0;
-    if (r.es_pred) grupos[k].nPred++; else grupos[k].nReal++;
+    if (r.es_pred) grupos[k].nPred++;
   });
   const rows = Object.values(grupos).sort((a,b) => a.Unidad<b.Unidad?-1:a.Celula<b.Celula?-1:1);
-  const totUni = {};
+  const totUni={};
   rows.forEach(r => {
-    if (!totUni[r.Unidad]) totUni[r.Unidad]={kmTot:0,kmPO:0,kmVal:0,nPred:0,nReal:0};
+    if (!totUni[r.Unidad]) totUni[r.Unidad]={kmTot:0,kmPO:0,kmVal:0,nPred:0};
     totUni[r.Unidad].kmTot+=r.kmTot; totUni[r.Unidad].kmPO+=r.kmPO;
     totUni[r.Unidad].kmVal+=r.kmVal; totUni[r.Unidad].nPred+=r.nPred;
   });
-  let html='', prevUni=null;
+  let html='',prevUni=null;
   rows.forEach(r => {
-    if (prevUni && prevUni !== r.Unidad) html += subtotalRow(prevUni, totUni[prevUni]);
-    const icfp = r.kmPO > 0 ? r.kmVal/r.kmPO : 0;
-    const tasa = r.kmVal > 0 ? r.kmTot/r.kmVal-1 : 0;
-    const bc   = r.Unidad==='U17'?'badge-u17':'badge-u18';
-    const tc   = tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
-    html += `<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
+    if (prevUni && prevUni!==r.Unidad) html+=subtotalRowKm(prevUni,totUni[prevUni]);
+    const icfp=r.kmPO>0?r.kmVal/r.kmPO:0;
+    const tasa=r.kmVal>0?r.kmTot/r.kmVal-1:0;
+    const bc=r.Unidad==='U17'?'badge-u17':'badge-u18';
+    const tc=tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
+    html+=`<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
       <td>${fmtNum(r.kmTot)}</td><td>${fmtNum(r.kmVal)}</td>
       <td>${icfp.toFixed(4)}</td><td class="${tc}">${(tasa*100).toFixed(2)}%</td>
       <td style="color:var(--orange)">${r.nPred}</td></tr>`;
-    prevUni = r.Unidad;
+    prevUni=r.Unidad;
   });
-  if (prevUni) html += subtotalRow(prevUni, totUni[prevUni]);
+  if (prevUni) html+=subtotalRowKm(prevUni,totUni[prevUni]);
   const tot={kmTot:0,kmPO:0,kmVal:0};
   Object.values(totUni).forEach(t=>{tot.kmTot+=t.kmTot;tot.kmPO+=t.kmPO;tot.kmVal+=t.kmVal;});
   const icfpE=tot.kmPO>0?tot.kmVal/tot.kmPO:0;
@@ -573,9 +721,9 @@ function renderResumen(datos) {
   html+=`<tr class="total-empresa"><td colspan="2">▶▶ TOTAL EMPRESA</td>
     <td>${fmtNum(tot.kmTot)}</td><td>${fmtNum(tot.kmVal)}</td>
     <td>${icfpE.toFixed(4)}</td><td>${(tasaE*100).toFixed(2)}%</td><td>—</td></tr>`;
-  document.getElementById('tablaResumenBody').innerHTML = html;
+  document.getElementById('tablaResumenBody').innerHTML=html;
 }
-function subtotalRow(unidad, t) {
+function subtotalRowKm(unidad,t) {
   const icfp=t.kmPO>0?t.kmVal/t.kmPO:0;
   const tasa=t.kmVal>0?t.kmTot/t.kmVal-1:0;
   return `<tr class="subtotal"><td colspan="2">▶ TOTAL ${unidad}</td>
@@ -584,179 +732,287 @@ function subtotalRow(unidad, t) {
     <td style="color:var(--orange)">${t.nPred}</td></tr>`;
 }
 
-// ── GRÁFICOS ──────────────────────────────────────────────────
-let charts = {};
-function renderCharts(datos) {
+// ── RESUMEN IE ────────────────────────────────────────────────
+function renderResumenIe(datos) {
+  const grupos = {};
+  datos.forEach(r => {
+    const k = `${r.Unidad}||${r.Celula}`;
+    if (!grupos[k]) grupos[k]={Unidad:r.Unidad,Celula:r.Celula,ie:[],ip:[],efi:[],hrs:[],nPred:0};
+    if (r.IE>0)              grupos[k].ie.push(r.IE);
+    if (r.IP>0)              grupos[k].ip.push(r.IP);
+    if (r.Eficiencia>0)      grupos[k].efi.push(r.Eficiencia);
+    if (r['%hrsAsignadas']>0) grupos[k].hrs.push(r['%hrsAsignadas']);
+    if (r.es_pred) grupos[k].nPred++;
+  });
+  const avg = arr => arr.length ? arr.reduce((s,v)=>s+v,0)/arr.length : 0;
+  const rows = Object.values(grupos).sort((a,b) => a.Unidad<b.Unidad?-1:a.Celula<b.Celula?-1:1);
+  const totUni = {};
+  rows.forEach(r => {
+    if (!totUni[r.Unidad]) totUni[r.Unidad]={ie:[],ip:[],efi:[],hrs:[],nPred:0};
+    totUni[r.Unidad].ie.push(...r.ie); totUni[r.Unidad].ip.push(...r.ip);
+    totUni[r.Unidad].efi.push(...r.efi); totUni[r.Unidad].hrs.push(...r.hrs);
+    totUni[r.Unidad].nPred+=r.nPred;
+  });
+  const ieFlag = v => v>=0.93?'ie-good':v>=0.85?'ie-warn':'ie-bad';
+  let html='',prevUni=null;
+  rows.forEach(r => {
+    if (prevUni && prevUni!==r.Unidad) {
+      const t=totUni[prevUni];
+      const aie=avg(t.ie),aip=avg(t.ip),aefi=avg(t.efi),ahrs=avg(t.hrs);
+      html+=`<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
+        <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
+        <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
+        <td>${(aefi*100).toFixed(1)}%</td>
+        <td>${(ahrs*100).toFixed(1)}%</td>
+        <td style="color:var(--orange)">${t.nPred}</td></tr>`;
+    }
+    const aie=avg(r.ie),aip=avg(r.ip),aefi=avg(r.efi),ahrs=avg(r.hrs);
+    const bc=r.Unidad==='U17'?'badge-u17':'badge-u18';
+    html+=`<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
+      <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
+      <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
+      <td>${(aefi*100).toFixed(1)}%</td>
+      <td>${(ahrs*100).toFixed(1)}%</td>
+      <td style="color:var(--orange)">${r.nPred}</td></tr>`;
+    prevUni=r.Unidad;
+  });
+  if (prevUni) {
+    const t=totUni[prevUni];
+    const aie=avg(t.ie),aip=avg(t.ip),aefi=avg(t.efi),ahrs=avg(t.hrs);
+    html+=`<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
+      <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
+      <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
+      <td>${(aefi*100).toFixed(1)}%</td>
+      <td>${(ahrs*100).toFixed(1)}%</td>
+      <td style="color:var(--orange)">${t.nPred}</td></tr>`;
+  }
+  // Total empresa
+  const all={ie:[],ip:[],efi:[],hrs:[]};
+  Object.values(grupos).forEach(r=>{all.ie.push(...r.ie);all.ip.push(...r.ip);all.efi.push(...r.efi);all.hrs.push(...r.hrs);});
+  const aie=avg(all.ie),aip=avg(all.ip),aefi=avg(all.efi),ahrs=avg(all.hrs);
+  html+=`<tr class="total-ie"><td colspan="2">▶▶ TOTAL EMPRESA</td>
+    <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
+    <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
+    <td>${(aefi*100).toFixed(1)}%</td>
+    <td>${(ahrs*100).toFixed(1)}%</td><td>—</td></tr>`;
+  document.getElementById('tablaResumenIeBody').innerHTML=html;
+}
+
+// ── CHARTS KM ─────────────────────────────────────────────────
+function renderChartsKm(datos) {
   const celulas = [...new Set(datos.map(r=>r.Celula))].sort();
-  const grid    = document.getElementById('chartsGrid');
-  Object.values(charts).forEach(c=>c.destroy());
-  charts = {};
-  grid.innerHTML = '';
-
+  const grid = document.getElementById('chartsGrid');
+  Object.values(chartsKm).forEach(c=>c.destroy());
+  chartsKm={}; grid.innerHTML='';
   const p = scenarioOpen ? getScenarioParams() : null;
-
   celulas.forEach(cel => {
     const dCel = datos.filter(r=>r.Celula===cel).sort((a,b)=>a.ds<b.ds?-1:1);
     if (!dCel.length) return;
-
-
-
-    // Índice donde empieza la predicción
-    const idxCorte = dCel.findIndex(r => r.es_pred);
-
-    const card = document.createElement('div');
-    card.className = 'chart-card';
+    const idxCorte = dCel.findIndex(r=>r.es_pred);
     const safeId = cel.replace(/[^a-z0-9]/gi,'_');
-    card.innerHTML = `
-      <div class="chart-title">
-        <strong>${cel}</strong>
-        <span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel]||'—'}</span>
-      </div>
+    const card = document.createElement('div');
+    card.className='chart-card';
+    card.innerHTML=`<div class="chart-title"><strong>${cel}</strong><span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel]||'—'}</span></div>
       <div class="chart-legend">
         <div class="chart-legend-item"><div class="legend-line" style="background:#00D4FF"></div>ICFP acum.</div>
-        <div class="chart-legend-item"><div class="legend-line" style="background:#FF6B35;border-top:2px dashed #FF6B35;height:0"></div>Tasa vacío acum.</div>
-
-        ${p ? '<div class="chart-legend-item" style="color:var(--purple)">⚡ escenario</div>' : ''}
-        ${idxCorte >= 0 ? '<div class="chart-legend-item"><div class="legend-vline" style="background:#FFB020"></div>Corte real/pred</div>' : ''}
+        <div class="chart-legend-item"><div class="legend-line" style="background:#FF6B35"></div>Tasa vacío acum.</div>
+        ${idxCorte>=0?'<div class="chart-legend-item"><div class="legend-vline" style="background:#FFB020"></div>Corte</div>':''}
       </div>
       <div class="chart-wrap"><canvas id="chart_${safeId}"></canvas></div>`;
     grid.appendChild(card);
-
-    let kmValAcum=0, kmPOAcum=0, kmTotAcum=0;
-    let kmValScAcum=0, kmPOScAcum=0, kmTotScAcum=0;
-    const labels=[], icfpAcum=[], tasaAcum=[], tasaScenAcum=[];
-
-
-    dCel.forEach((r,i) => {
-      const rAdj = p ? applyScenario(r, p) : r;
-      kmValAcum  += r.Km_valido||0;
-      kmPOAcum   += r.Kms_PO||0;
-      kmTotAcum  += r.Kms_totales||0;
-      kmValScAcum+= rAdj.Km_valido||0;
-      kmPOScAcum += rAdj.Kms_PO||0;
-      kmTotScAcum+= rAdj.Kms_totales||0;
-
+    let kvA=0,kpA=0,ktA=0,kvSA=0,kpSA=0,ktSA=0;
+    const labels=[],icfpA=[],tasaA=[],tasaSA=[];
+    dCel.forEach(r => {
+      const rAdj=p?applyScenario(r,p):r;
+      kvA+=r.Km_valido||0; kpA+=r.Kms_PO||0; ktA+=r.Kms_totales||0;
+      kvSA+=rAdj.Km_valido||0; kpSA+=rAdj.Kms_PO||0; ktSA+=rAdj.Kms_totales||0;
       labels.push(r.ds.substring(5,10));
-      icfpAcum.push(kmPOAcum>0 ? +(kmValAcum/kmPOAcum).toFixed(4) : null);
-      tasaAcum.push(kmValAcum>0 ? +((kmTotAcum/kmValAcum-1)*100).toFixed(2) : null);
-      tasaScenAcum.push(p && r.es_pred && kmValScAcum>0
-        ? +((kmTotScAcum/kmValScAcum-1)*100).toFixed(2) : null);
-
+      icfpA.push(kpA>0?+(kvA/kpA).toFixed(4):null);
+      tasaA.push(kvA>0?+((ktA/kvA-1)*100).toFixed(2):null);
+      tasaSA.push(p&&r.es_pred&&kvSA>0?+((ktSA/kvSA-1)*100).toFixed(2):null);
     });
-
-    // Plugin línea vertical en corte real/pred
-    const corteLine = {
-      id: 'corteLine_'+safeId,
-      afterDatasetsDraw(chart) {
-        if (idxCorte < 0) return;
-        const {ctx, scales:{x,y2}} = chart;
-        const xPos = x.getPixelForValue(idxCorte);
-        ctx.save();
-        ctx.strokeStyle = 'rgba(255,176,32,0.6)';
-        ctx.lineWidth   = 1.5;
-        ctx.setLineDash([4,4]);
-        ctx.beginPath();
-        ctx.moveTo(xPos, y2.top);
-        ctx.lineTo(xPos, y2.bottom);
-        ctx.stroke();
-        ctx.restore();
-      }
-    };
-
-    const ctx = document.getElementById(`chart_${safeId}`).getContext('2d');
-    const datasets = [
-      {
-        type:'line', label:'ICFP acum.',
-        data:icfpAcum, yAxisID:'y1',
-        borderColor:'#00D4FF', backgroundColor:'transparent',
-        borderWidth:1.5, pointRadius:0, tension:0.3, order:1,
-      },
-
-      {
-        type:'line', label:'Tasa vacío acum.',
-        data:tasaAcum, yAxisID:'y2',
-        borderColor:'#FF6B35', backgroundColor:'transparent',
-        borderWidth:1.5, pointRadius:0, tension:0.3,
-        borderDash:[4,3], order:2,
-      },
+    const corteLine={id:'cl_'+safeId,afterDatasetsDraw(c){
+      if(idxCorte<0)return;
+      const{ctx,scales:{x,y2}}=c;const xp=x.getPixelForValue(idxCorte);
+      ctx.save();ctx.strokeStyle='rgba(255,176,32,0.6)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(xp,y2.top);ctx.lineTo(xp,y2.bottom);ctx.stroke();ctx.restore();
+    }};
+    const datasets=[
+      {type:'line',label:'ICFP acum.',data:icfpA,yAxisID:'y1',borderColor:'#00D4FF',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3},
+      {type:'line',label:'Tasa vacío acum.',data:tasaA,yAxisID:'y2',borderColor:'#FF6B35',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3,borderDash:[4,3]},
     ];
-
-    if (p) {
-      datasets.push({
-        type:'line', label:'Tasa vacío (escenario)',
-        data:tasaScenAcum, yAxisID:'y2',
-        borderColor:'#A78BFA', backgroundColor:'transparent',
-        borderWidth:1.5, pointRadius:0, tension:0.3,
-        borderDash:[2,2], order:2,
-      });
-    }
-
-    charts[cel] = new Chart(ctx, {
-      data:{labels, datasets},
-      options:{
-        responsive:true, maintainAspectRatio:false, animation:false,
-        interaction:{mode:'index', intersect:false},
-        plugins:{
-          legend:{
-            display:false,
-          },
-          tooltip:{
-            backgroundColor:'#1E2330', borderColor:'#252A38', borderWidth:1,
-            titleColor:'#E8ECF4', bodyColor:'#8892A4', titleFont:{size:11},
-
-          }
-        },
-        scales:{
-          x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
-          y1:{position:'left', ticks:{color:'#00D4FF',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}},
-          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false}},
-        }
-      },
-      plugins:[corteLine],
-    });
+    if(p) datasets.push({type:'line',label:'Tasa (escenario)',data:tasaSA,yAxisID:'y2',borderColor:'#A78BFA',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3,borderDash:[2,2]});
+    chartsKm[cel]=new Chart(document.getElementById(`chart_${safeId}`).getContext('2d'),{
+      data:{labels,datasets},
+      options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2330',borderColor:'#252A38',borderWidth:1,titleColor:'#E8ECF4',bodyColor:'#8892A4',titleFont:{size:11}}},
+        scales:{x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
+          y1:{position:'left',ticks:{color:'#00D4FF',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}},
+          y2:{position:'right',ticks:{color:'#FF6B35',font:{size:9},maxTicksLimit:5},grid:{display:false}}}},
+      plugins:[corteLine]});
   });
 }
 
-// ── DETALLE ───────────────────────────────────────────────────
-function renderDetalle(datos) {
-  const sorted = [...datos].sort((a,b) => a.ds!==b.ds ? (a.ds<b.ds?-1:1) : a.Celula<b.Celula?-1:1);
-  document.getElementById('detalleCount').textContent = `${sorted.length.toLocaleString()} filas`;
-  const html = sorted.map(r => {
-    const tasa = r.Tasa_vacio ?? (r.Km_valido>0 ? r.Kms_totales/r.Km_valido-1 : 0);
-    const tc   = tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
-    const dot  = r.es_pred ? '<span class="dot-pred"></span>' : '<span class="dot-real"></span>';
+// ── CHARTS IE ─────────────────────────────────────────────────
+function renderChartsIe(datos) {
+  const celulas = [...new Set(datos.map(r=>r.Celula))].sort();
+  const grid = document.getElementById('chartsGridIe');
+  Object.values(chartsIe).forEach(c=>c.destroy());
+  chartsIe={}; grid.innerHTML='';
+  celulas.forEach(cel => {
+    const dCel = datos.filter(r=>r.Celula===cel).sort((a,b)=>a.ds<b.ds?-1:1);
+    if (!dCel.length) return;
+    const idxCorte = dCel.findIndex(r=>r.es_pred);
+    const safeId = 'ie_'+cel.replace(/[^a-z0-9]/gi,'_');
+    const card = document.createElement('div');
+    card.className='chart-card';
+    card.innerHTML=`<div class="chart-title"><strong>${cel}</strong><span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel]||'—'}</span></div>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="legend-line" style="background:#00C9B1"></div>IE</div>
+        <div class="chart-legend-item"><div class="legend-line" style="background:#A78BFA"></div>IP</div>
+        ${idxCorte>=0?'<div class="chart-legend-item"><div class="legend-vline" style="background:#FFB020"></div>Corte</div>':''}
+      </div>
+      <div class="chart-wrap"><canvas id="chart_${safeId}"></canvas></div>`;
+    grid.appendChild(card);
+    const labels=[],ieD=[],ipD=[];
+    dCel.forEach(r => {
+      labels.push(r.ds.substring(5,10));
+      ieD.push(r.IE>0?+r.IE.toFixed(4):null);
+      ipD.push(r.IP>0?+r.IP.toFixed(4):null);
+    });
+    const corteLine={id:'cl_'+safeId,afterDatasetsDraw(c){
+      if(idxCorte<0)return;
+      const{ctx,scales:{x,y}}=c;const xp=x.getPixelForValue(idxCorte);
+      ctx.save();ctx.strokeStyle='rgba(255,176,32,0.6)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(xp,y.top);ctx.lineTo(xp,y.bottom);ctx.stroke();ctx.restore();
+    }};
+    chartsIe[cel]=new Chart(document.getElementById(`chart_${safeId}`).getContext('2d'),{
+      data:{labels,datasets:[
+        {type:'line',label:'IE',data:ieD,borderColor:'#00C9B1',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3},
+        {type:'line',label:'IP',data:ipD,borderColor:'#A78BFA',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3,borderDash:[4,3]},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2330',borderColor:'#252A38',borderWidth:1,titleColor:'#E8ECF4',bodyColor:'#8892A4',titleFont:{size:11}}},
+        scales:{x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
+          y:{ticks:{color:'#8892A4',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}}}},
+      plugins:[corteLine]});
+  });
+}
+
+// ── CHARTS EFI ────────────────────────────────────────────────
+function renderChartsEfi(datos) {
+  const celulas = [...new Set(datos.map(r=>r.Celula))].sort();
+  const grid = document.getElementById('chartsGridEfi');
+  Object.values(chartsEfi).forEach(c=>c.destroy());
+  chartsEfi={}; grid.innerHTML='';
+  celulas.forEach(cel => {
+    const dCel = datos.filter(r=>r.Celula===cel).sort((a,b)=>a.ds<b.ds?-1:1);
+    if (!dCel.length) return;
+    const idxCorte = dCel.findIndex(r=>r.es_pred);
+    const safeId = 'efi_'+cel.replace(/[^a-z0-9]/gi,'_');
+    const card = document.createElement('div');
+    card.className='chart-card';
+    card.innerHTML=`<div class="chart-title"><strong>${cel}</strong><span style="font-size:10px;color:var(--text3)">${mapaUnidad[cel]||'—'}</span></div>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="legend-line" style="background:#00E5A0"></div>Eficiencia</div>
+        <div class="chart-legend-item"><div class="legend-line" style="background:#FFB020"></div>% Hrs Asig.</div>
+        ${idxCorte>=0?'<div class="chart-legend-item"><div class="legend-vline" style="background:#FF4560"></div>Corte</div>':''}
+      </div>
+      <div class="chart-wrap"><canvas id="chart_${safeId}"></canvas></div>`;
+    grid.appendChild(card);
+    const labels=[],efiD=[],hrsD=[];
+    dCel.forEach(r => {
+      labels.push(r.ds.substring(5,10));
+      efiD.push(r.Eficiencia>0?+r.Eficiencia.toFixed(4):null);
+      hrsD.push(r['%hrsAsignadas']>0?+r['%hrsAsignadas'].toFixed(4):null);
+    });
+    const corteLine={id:'cl_'+safeId,afterDatasetsDraw(c){
+      if(idxCorte<0)return;
+      const{ctx,scales:{x,y}}=c;const xp=x.getPixelForValue(idxCorte);
+      ctx.save();ctx.strokeStyle='rgba(255,69,96,0.6)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(xp,y.top);ctx.lineTo(xp,y.bottom);ctx.stroke();ctx.restore();
+    }};
+    chartsEfi[cel]=new Chart(document.getElementById(`chart_${safeId}`).getContext('2d'),{
+      data:{labels,datasets:[
+        {type:'line',label:'Eficiencia',data:efiD,borderColor:'#00E5A0',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3},
+        {type:'line',label:'% Hrs Asig.',data:hrsD,borderColor:'#FFB020',backgroundColor:'transparent',borderWidth:1.5,pointRadius:0,tension:0.3,borderDash:[4,3]},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2330',borderColor:'#252A38',borderWidth:1,titleColor:'#E8ECF4',bodyColor:'#8892A4',titleFont:{size:11}}},
+        scales:{x:{ticks:{color:'#4A5268',font:{size:9},maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
+          y:{ticks:{color:'#8892A4',font:{size:9},maxTicksLimit:5},grid:{color:'rgba(255,255,255,0.04)'}}}},
+      plugins:[corteLine]});
+  });
+}
+
+// ── DETALLE KM ────────────────────────────────────────────────
+function renderDetalleKm(datos) {
+  const sorted=[...datos].sort((a,b)=>a.ds!==b.ds?(a.ds<b.ds?-1:1):a.Celula<b.Celula?-1:1);
+  document.getElementById('detalleCount').textContent=`${sorted.length.toLocaleString()} filas`;
+  const html=sorted.map(r=>{
+    const tasa=r.Tasa_vacio??(r.Km_valido>0?r.Kms_totales/r.Km_valido-1:0);
+    const tc=tasa<0.08?'tasa-good':tasa<0.15?'tasa-warn':'tasa-bad';
+    const dot=r.es_pred?'<span class="dot-pred"></span>':'<span class="dot-real"></span>';
     return `<tr><td>${dot}</td><td>${r.ds.substring(0,10)}</td><td>${r.Celula}</td>
       <td>${r.Unidad}</td><td>${(r.ICFP||0).toFixed(4)}</td>
       <td>${fmtNum(r.Kms_PO||0)}</td><td>${fmtNum(r.Kms_totales||0)}</td>
       <td>${fmtNum(r.Km_valido||0)}</td><td class="${tc}">${(tasa*100).toFixed(2)}%</td></tr>`;
   }).join('');
-  document.getElementById('tablaDetalleBody').innerHTML = html ||
-    '<tr><td colspan="9" style="text-align:center;color:var(--text3);padding:24px">Sin datos para el período seleccionado</td></tr>';
+  document.getElementById('tablaDetalleBody').innerHTML=html||'<tr><td colspan="9" style="text-align:center;color:var(--text3);padding:24px">Sin datos</td></tr>';
+}
+
+// ── DETALLE IE ────────────────────────────────────────────────
+function renderDetalleIe(datos) {
+  const sorted=[...datos].sort((a,b)=>a.ds!==b.ds?(a.ds<b.ds?-1:1):a.Celula<b.Celula?-1:1);
+  document.getElementById('detalleIeCount').textContent=`${sorted.length.toLocaleString()} filas`;
+  const ieFlag=v=>v>=0.93?'ie-good':v>=0.85?'ie-warn':'ie-bad';
+  const html=sorted.map(r=>{
+    const dot=r.es_pred?'<span class="dot-pred"></span>':'<span class="dot-real"></span>';
+    const ie=r.IE||0,ip=r.IP||0,efi=r.Eficiencia||0,hrs=r['%hrsAsignadas']||0;
+    return `<tr><td>${dot}</td><td>${r.ds.substring(0,10)}</td><td>${r.Celula}</td>
+      <td>${r.Unidad}</td>
+      <td class="${ieFlag(ie)}">${ie.toFixed(4)}</td>
+      <td class="${ieFlag(ip)}">${ip.toFixed(4)}</td>
+      <td>${(efi*100).toFixed(1)}%</td>
+      <td>${(hrs*100).toFixed(1)}%</td></tr>`;
+  }).join('');
+  document.getElementById('tablaDetalleIeBody').innerHTML=html||'<tr><td colspan="8" style="text-align:center;color:var(--text3);padding:24px">Sin datos</td></tr>';
 }
 
 // ── EXPORTAR CSV ──────────────────────────────────────────────
 function exportarCSV() {
   if (!DATA) return;
-  const datos = getDatosFiltrados();
-  const ini   = document.getElementById('fechaIni').value;
-  const fin   = document.getElementById('fechaFin').value;
-  const headers = ['tipo','fecha','celula','unidad','ICFP','Kms_PO','Kms_totales','Km_valido','Tasa_vacio'];
-  const rows = datos.map(r => {
-    const tasa = r.Tasa_vacio ?? (r.Km_valido>0 ? r.Kms_totales/r.Km_valido-1 : 0);
-    return [r.es_pred?'prediccion':'real', r.ds.substring(0,10), r.Celula, r.Unidad,
-      (r.ICFP||0).toFixed(4), Math.round(r.Kms_PO||0), Math.round(r.Kms_totales||0),
-      Math.round(r.Km_valido||0), tasa.toFixed(4)].join(';');
-  });
-  const blob = new Blob(['\uFEFF'+[headers.join(';'),...rows].join('\n')],{type:'text/csv;charset=utf-8;'});
-  const a = Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:`proyeccion_${ini}_${fin}.csv`});
-  a.click(); URL.revokeObjectURL(a.href);
+  const ini=document.getElementById('fechaIni').value;
+  const fin=document.getElementById('fechaFin').value;
+  if (tabActual==='km') {
+    const datos=getDatosFiltrados();
+    const headers=['tipo','fecha','celula','unidad','ICFP','Kms_PO','Kms_totales','Km_valido','Tasa_vacio'];
+    const rows=datos.map(r=>{
+      const tasa=r.Tasa_vacio??(r.Km_valido>0?r.Kms_totales/r.Km_valido-1:0);
+      return [r.es_pred?'prediccion':'real',r.ds.substring(0,10),r.Celula,r.Unidad,
+        (r.ICFP||0).toFixed(4),Math.round(r.Kms_PO||0),Math.round(r.Kms_totales||0),
+        Math.round(r.Km_valido||0),tasa.toFixed(4)].join(';');
+    });
+    descargar([headers.join(';'),...rows].join('\n'),`km_vacio_${ini}_${fin}.csv`);
+  } else {
+    const datos=getDatosFiltradosIe();
+    const headers=['tipo','fecha','celula','unidad','IE','IP','Eficiencia','%hrsAsignadas'];
+    const rows=datos.map(r=>[r.es_pred?'prediccion':'real',r.ds.substring(0,10),r.Celula,r.Unidad,
+      (r.IE||0).toFixed(4),(r.IP||0).toFixed(4),(r.Eficiencia||0).toFixed(4),(r['%hrsAsignadas']||0).toFixed(4)].join(';'));
+    descargar([headers.join(';'),...rows].join('\n'),`calidad_servicio_${ini}_${fin}.csv`);
+  }
+}
+function descargar(contenido, nombre) {
+  const blob=new Blob(['\uFEFF'+contenido],{type:'text/csv;charset=utf-8;'});
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:nombre});
+  a.click();URL.revokeObjectURL(a.href);
 }
 
 // ── UTILS ─────────────────────────────────────────────────────
-function fmtNum(n) { return Math.round(n).toLocaleString('es-CL'); }
-function setStatus(msg,type) {
-  const el = document.getElementById('statusBar');
-  el.textContent = msg; el.className = `visible ${type}`;
+function fmtNum(n){return Math.round(n).toLocaleString('es-CL');}
+function setStatus(msg,type){
+  const el=document.getElementById('statusBar');
+  el.textContent=msg;el.className=`visible ${type}`;
 }
 </script>
 </body>
