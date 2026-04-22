@@ -24,8 +24,6 @@
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:14px;min-height:100vh;}
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-
-/* HEADER */
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:12px;}
 .logo-mark{width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;color:#fff;}
@@ -34,18 +32,13 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .logo-sub{font-size:10px;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-top:1px;}
 .header-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-align:right;}
 .header-meta strong{color:var(--orange);display:block;}
-
-/* TABS */
 .tabs{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:0;}
 .tab{padding:12px 20px;font-size:12px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;letter-spacing:0.05em;text-transform:uppercase;}
 .tab:hover{color:var(--text2);}
 .tab.active{color:var(--text);border-bottom-color:var(--orange);}
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
-
 .container{max-width:1200px;margin:0 auto;padding:24px 24px 60px;}
-
-/* CONTROLS */
 .controls{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;}
 .ctrl-group{display:flex;flex-direction:column;gap:5px;}
 .ctrl-group label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;}
@@ -63,13 +56,10 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .btn-scenario:hover{background:rgba(167,139,250,0.18);}
 .btn-scenario.active{background:rgba(167,139,250,0.22);border-color:var(--purple);}
 .ctrl-sep{width:1px;height:36px;background:var(--border);align-self:flex-end;margin:0 4px;}
-
 #statusBar{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);padding:10px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;display:none;}
 #statusBar.visible{display:block;}
 #statusBar.ok{color:var(--green);border-color:rgba(0,229,160,0.2);}
 #statusBar.err{color:var(--red);border-color:rgba(255,69,96,0.2);}
-
-/* PANEL SUPUESTOS */
 .scenario-panel{background:var(--bg2);border:1px solid rgba(167,139,250,0.25);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:none;}
 .scenario-panel.open{display:block;}
 .scenario-title{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
@@ -89,9 +79,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .impact-bad{color:var(--red);}
 .impact-good{color:var(--green);}
 .scenario-reset{font-size:11px;color:var(--text3);cursor:pointer;text-decoration:underline;margin-left:auto;}
-
-/* KPIs */
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.kpi-row-ie{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
 .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;transition:border-color 0.2s;}
 .kpi-label{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
 .kpi-val{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;line-height:1;}
@@ -104,14 +93,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .kpi.teal .kpi-val{color:var(--teal);}
 .kpi.purple .kpi-val{color:var(--purple);}
 .kpi.scenario-active{border-color:rgba(167,139,250,0.35);}
-
-/* IE KPI row — 2 cols principales + 2 secundarias */
-.kpi-row-ie{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-
 .section-title{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
-
-/* RESUMEN TABLE */
 .resumen-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;}
 .resumen-table th{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);}
 .resumen-table th:first-child,.resumen-table th:nth-child(2){text-align:left;}
@@ -132,8 +115,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .ie-good{color:var(--green);}
 .ie-warn{color:var(--amber);}
 .ie-bad{color:var(--red);}
-
-/* CHARTS */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
 .chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;}
 .chart-title{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;}
@@ -143,8 +124,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .legend-line{width:16px;height:2px;border-radius:1px;}
 .legend-vline{width:2px;height:10px;border-radius:1px;}
 .chart-wrap{position:relative;height:190px;}
-
-/* DETALLE */
 .detalle-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
 .detalle-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .detalle-scroll{overflow-x:auto;max-height:340px;overflow-y:auto;}
@@ -156,19 +135,14 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .detalle-table tr:hover td{background:rgba(255,255,255,0.02);}
 .dot-pred{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block;margin-right:4px;vertical-align:middle;}
 .dot-real{width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;margin-right:4px;vertical-align:middle;}
-
-/* INFO NOTA */
 .info-nota{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--text3);margin-bottom:16px;}
 .info-nota strong{color:var(--text2);}
-
-/* UPLOAD */
 .upload-zone{border:2px dashed var(--border2);border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all 0.15s;margin-bottom:20px;}
 .upload-zone:hover,.upload-zone.drag{border-color:var(--orange);background:var(--orange-dim);}
 .upload-zone input{display:none;}
 .upload-icon{font-size:28px;margin-bottom:8px;}
 .upload-text{font-size:13px;color:var(--text2);}
 .upload-hint{font-size:11px;color:var(--text3);margin-top:4px;}
-
 @media(max-width:768px){
   .kpi-row,.kpi-row-ie{grid-template-columns:repeat(2,1fr);}
   .charts-grid{grid-template-columns:1fr;}
@@ -192,7 +166,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs" id="tabsBar" style="display:none">
   <div class="tab active" onclick="switchTab('km')" id="tabKm">📦 Km Vacío</div>
   <div class="tab" onclick="switchTab('ie')" id="tabIe">📊 Calidad de Servicio</div>
@@ -200,7 +173,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 
 <div class="container">
 
-  <!-- UPLOAD -->
   <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
     ondragover="event.preventDefault();this.classList.add('drag')"
     ondragleave="this.classList.remove('drag')"
@@ -213,7 +185,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 
   <div id="statusBar"></div>
 
-  <!-- CONTROLS COMPARTIDOS -->
   <div class="controls" id="controls" style="display:none">
     <div class="ctrl-group">
       <label>Fecha inicio</label>
@@ -242,12 +213,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
     <button class="btn btn-sec" onclick="resetFiltros()">↺ Reset</button>
   </div>
 
-  <!-- ════════════════════════════════════════ -->
   <!-- PANEL KM VACÍO -->
-  <!-- ════════════════════════════════════════ -->
   <div class="tab-panel active" id="panelKm">
-
-    <!-- SUPUESTOS -->
     <div class="scenario-panel" id="scenarioPanel">
       <div class="scenario-title">⚡ Análisis de supuestos</div>
       <div class="scenario-desc">Ajusta los parámetros para ver cómo cambia la tasa vacío proyectada. Solo aplica a días predichos.</div>
@@ -356,41 +323,38 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
         </div>
       </div>
     </div>
-  </div><!-- /panelKm -->
+  </div>
 
-  <!-- ════════════════════════════════════════ -->
   <!-- PANEL CALIDAD DE SERVICIO -->
-  <!-- ════════════════════════════════════════ -->
   <div class="tab-panel" id="panelIe">
     <div id="dashboardIe" style="display:none">
 
       <div class="info-nota">
-        <strong>Nota metodológica:</strong> IE e IP se promedian para el período seleccionado.
-        Eficiencia = horas conduciendo / horas trabajadas. %Hrs Asignadas = horas utilizadas / horas planificadas.
+        <strong>Nota metodológica:</strong> IE e IP se promedian ponderados por Km válido.
+        Eficiencia y % Hrs Asignadas se promedian ponderados por Km total.
         Incluye datos reales (SIR) y predicción Prophet.
       </div>
 
-      <!-- KPIs IE -->
       <div class="kpi-row-ie">
         <div class="kpi teal">
-          <div class="kpi-label">IE Promedio</div>
+          <div class="kpi-label">IE Pond.</div>
           <div class="kpi-val" id="kpiIE">—</div>
-          <div class="kpi-sub" id="kpiIESub">Índice de Evasión</div>
+          <div class="kpi-sub" id="kpiIESub">Ponderado por Km válido</div>
         </div>
         <div class="kpi purple">
-          <div class="kpi-label">IP Promedio</div>
+          <div class="kpi-label">IP Pond.</div>
           <div class="kpi-val" id="kpiIP">—</div>
-          <div class="kpi-sub">Índice de Puntualidad</div>
+          <div class="kpi-sub">Ponderado por Km válido</div>
         </div>
         <div class="kpi green">
-          <div class="kpi-label">Eficiencia</div>
+          <div class="kpi-label">Eficiencia Pond.</div>
           <div class="kpi-val" id="kpiEfi">—</div>
-          <div class="kpi-sub">Hrs conduciendo / trabajadas</div>
+          <div class="kpi-sub">Ponderado por Km total</div>
         </div>
         <div class="kpi amber">
-          <div class="kpi-label">% Hrs Asignadas</div>
+          <div class="kpi-label">% Hrs Asig. Pond.</div>
           <div class="kpi-val" id="kpiHrs">—</div>
-          <div class="kpi-sub">Hrs utilizadas / planificadas</div>
+          <div class="kpi-sub">Ponderado por Km total</div>
         </div>
       </div>
 
@@ -429,9 +393,9 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
         </div>
       </div>
     </div>
-  </div><!-- /panelIe -->
+  </div>
 
-</div><!-- /container -->
+</div>
 
 <script>
 let DATA = null;
@@ -439,6 +403,19 @@ let mapaUnidad = {};
 let scenarioOpen = false;
 let tabActual = 'km';
 let chartsKm = {}, chartsIe = {}, chartsEfi = {};
+
+// ── PROMEDIO PONDERADO ────────────────────────────────────────
+// IE e IP → peso = Km_valido
+// Eficiencia y %hrsAsignadas → peso = Kms_totales
+function wavg(datos, col, pesoCol) {
+  let sumVal = 0, sumPeso = 0;
+  datos.forEach(r => {
+    const v = r[col] || 0;
+    const p = r[pesoCol] || 0;
+    if (v > 0 && p > 0) { sumVal += v * p; sumPeso += p; }
+  });
+  return sumPeso > 0 ? sumVal / sumPeso : 0;
+}
 
 // ── TABS ──────────────────────────────────────────────────────
 function switchTab(tab) {
@@ -473,29 +450,24 @@ function inicializar() {
   DATA.mapa_unidad.forEach(r => { mapaUnidad[r.Celula] = r.Unidad; });
   document.getElementById('metaGenerado').textContent = `Generado: ${m.generado}`;
   document.getElementById('metaFechas').textContent   = `Real: ${m.fecha_min_real} → ${m.fecha_max_real}`;
-
   const selCel = document.getElementById('filtroCelula');
   const selUni = document.getElementById('filtroUnidad');
   selCel.innerHTML = '<option value="todas">Todas</option>';
   selUni.innerHTML = '<option value="todas">Todas</option>';
   m.celulas.forEach(c  => { selCel.innerHTML += `<option value="${c}">${c}</option>`; });
   m.unidades.forEach(u => { selUni.innerHTML += `<option value="${u}">${u}</option>`; });
-
   const anio = new Date().getFullYear();
   const mes  = String(new Date().getMonth()+1).padStart(2,'0');
   const lastDay = new Date(anio, new Date().getMonth()+1, 0).getDate().toString().padStart(2,'0');
   document.getElementById('fechaIni').value = `${anio}-${mes}-01`;
   document.getElementById('fechaFin').value = `${anio}-${mes}-${lastDay}`;
-
   document.getElementById('uploadZone').style.display = 'none';
   document.getElementById('tabsBar').style.display    = 'flex';
   document.getElementById('controls').style.display  = 'flex';
   document.getElementById('dashboardKm').style.display = 'block';
   document.getElementById('dashboardIe').style.display = 'block';
-
   const hasIe = DATA.real_ie && DATA.real_ie.length > 0;
   document.getElementById('tabIe').style.display = hasIe ? 'block' : 'none';
-
   const nReal = (DATA.real||[]).length;
   const nPred = (DATA.prediccion||[]).length;
   const nIe   = (DATA.real_ie||[]).length;
@@ -665,20 +637,15 @@ function renderKPIsScenario(datos, p, hasScenario) {
   ['kpiCardTotal','kpiCardTasa'].forEach(id => document.getElementById(id).classList.add('scenario-active'));
 }
 
-// ── KPIs IE ───────────────────────────────────────────────────
+// ── KPIs IE — ponderado por km ────────────────────────────────
 function renderKPIsIe(datos) {
   if (!datos.length) return;
-  const ie  = datos.map(r=>r.IE||0).filter(v=>v>0);
-  const ip  = datos.map(r=>r.IP||0).filter(v=>v>0);
-  const efi = datos.map(r=>r.Eficiencia||0).filter(v=>v>0);
-  const hrs = datos.map(r=>r['%hrsAsignadas']||0).filter(v=>v>0);
-  const avg = arr => arr.length ? arr.reduce((s,v)=>s+v,0)/arr.length : 0;
-  const nPred = datos.filter(r=>r.es_pred).length;
-  const nReal = datos.filter(r=>!r.es_pred).length;
-  document.getElementById('kpiIE').textContent  = avg(ie).toFixed(4);
-  document.getElementById('kpiIP').textContent  = avg(ip).toFixed(4);
-  document.getElementById('kpiEfi').textContent = (avg(efi)*100).toFixed(1)+'%';
-  document.getElementById('kpiHrs').textContent = (avg(hrs)*100).toFixed(1)+'%';
+  const nPred = datos.filter(r => r.es_pred).length;
+  const nReal = datos.filter(r => !r.es_pred).length;
+  document.getElementById('kpiIE').textContent  = wavg(datos, 'IE',             'Km_valido').toFixed(4);
+  document.getElementById('kpiIP').textContent  = wavg(datos, 'IP',             'Km_valido').toFixed(4);
+  document.getElementById('kpiEfi').textContent = (wavg(datos, 'Eficiencia',    'Kms_totales') * 100).toFixed(1) + '%';
+  document.getElementById('kpiHrs').textContent = (wavg(datos, '%hrsAsignadas', 'Kms_totales') * 100).toFixed(1) + '%';
   document.getElementById('kpiIESub').textContent = `${nReal} días reales · ${nPred} predichos`;
 }
 
@@ -732,70 +699,71 @@ function subtotalRowKm(unidad,t) {
     <td style="color:var(--orange)">${t.nPred}</td></tr>`;
 }
 
-// ── RESUMEN IE ────────────────────────────────────────────────
+// ── RESUMEN IE — ponderado por km ─────────────────────────────
 function renderResumenIe(datos) {
   const grupos = {};
   datos.forEach(r => {
     const k = `${r.Unidad}||${r.Celula}`;
-    if (!grupos[k]) grupos[k]={Unidad:r.Unidad,Celula:r.Celula,ie:[],ip:[],efi:[],hrs:[],nPred:0};
-    if (r.IE>0)              grupos[k].ie.push(r.IE);
-    if (r.IP>0)              grupos[k].ip.push(r.IP);
-    if (r.Eficiencia>0)      grupos[k].efi.push(r.Eficiencia);
-    if (r['%hrsAsignadas']>0) grupos[k].hrs.push(r['%hrsAsignadas']);
+    if (!grupos[k]) grupos[k] = {
+      Unidad: r.Unidad, Celula: r.Celula, rows: [], nPred: 0
+    };
+    grupos[k].rows.push(r);
     if (r.es_pred) grupos[k].nPred++;
   });
-  const avg = arr => arr.length ? arr.reduce((s,v)=>s+v,0)/arr.length : 0;
+
+  const ieFlag = v => v >= 0.93 ? 'ie-good' : v >= 0.85 ? 'ie-warn' : 'ie-bad';
+
   const rows = Object.values(grupos).sort((a,b) => a.Unidad<b.Unidad?-1:a.Celula<b.Celula?-1:1);
+
+  // Acumular por unidad para subtotales
   const totUni = {};
   rows.forEach(r => {
-    if (!totUni[r.Unidad]) totUni[r.Unidad]={ie:[],ip:[],efi:[],hrs:[],nPred:0};
-    totUni[r.Unidad].ie.push(...r.ie); totUni[r.Unidad].ip.push(...r.ip);
-    totUni[r.Unidad].efi.push(...r.efi); totUni[r.Unidad].hrs.push(...r.hrs);
-    totUni[r.Unidad].nPred+=r.nPred;
+    if (!totUni[r.Unidad]) totUni[r.Unidad] = { rows: [], nPred: 0 };
+    totUni[r.Unidad].rows.push(...r.rows);
+    totUni[r.Unidad].nPred += r.nPred;
   });
-  const ieFlag = v => v>=0.93?'ie-good':v>=0.85?'ie-warn':'ie-bad';
-  let html='',prevUni=null;
+
+  let html = '', prevUni = null;
   rows.forEach(r => {
-    if (prevUni && prevUni!==r.Unidad) {
-      const t=totUni[prevUni];
-      const aie=avg(t.ie),aip=avg(t.ip),aefi=avg(t.efi),ahrs=avg(t.hrs);
-      html+=`<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
-        <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
-        <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
-        <td>${(aefi*100).toFixed(1)}%</td>
-        <td>${(ahrs*100).toFixed(1)}%</td>
+    if (prevUni && prevUni !== r.Unidad) {
+      const t = totUni[prevUni];
+      html += `<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
+        <td class="${ieFlag(wavg(t.rows,'IE','Km_valido'))}">${wavg(t.rows,'IE','Km_valido').toFixed(4)}</td>
+        <td class="${ieFlag(wavg(t.rows,'IP','Km_valido'))}">${wavg(t.rows,'IP','Km_valido').toFixed(4)}</td>
+        <td>${(wavg(t.rows,'Eficiencia','Kms_totales')*100).toFixed(1)}%</td>
+        <td>${(wavg(t.rows,'%hrsAsignadas','Kms_totales')*100).toFixed(1)}%</td>
         <td style="color:var(--orange)">${t.nPred}</td></tr>`;
     }
-    const aie=avg(r.ie),aip=avg(r.ip),aefi=avg(r.efi),ahrs=avg(r.hrs);
-    const bc=r.Unidad==='U17'?'badge-u17':'badge-u18';
-    html+=`<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
-      <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
-      <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
-      <td>${(aefi*100).toFixed(1)}%</td>
-      <td>${(ahrs*100).toFixed(1)}%</td>
+    const bc = r.Unidad === 'U17' ? 'badge-u17' : 'badge-u18';
+    html += `<tr><td><span class="${bc}">${r.Unidad}</span></td><td>${r.Celula}</td>
+      <td class="${ieFlag(wavg(r.rows,'IE','Km_valido'))}">${wavg(r.rows,'IE','Km_valido').toFixed(4)}</td>
+      <td class="${ieFlag(wavg(r.rows,'IP','Km_valido'))}">${wavg(r.rows,'IP','Km_valido').toFixed(4)}</td>
+      <td>${(wavg(r.rows,'Eficiencia','Kms_totales')*100).toFixed(1)}%</td>
+      <td>${(wavg(r.rows,'%hrsAsignadas','Kms_totales')*100).toFixed(1)}%</td>
       <td style="color:var(--orange)">${r.nPred}</td></tr>`;
-    prevUni=r.Unidad;
+    prevUni = r.Unidad;
   });
+
   if (prevUni) {
-    const t=totUni[prevUni];
-    const aie=avg(t.ie),aip=avg(t.ip),aefi=avg(t.efi),ahrs=avg(t.hrs);
-    html+=`<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
-      <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
-      <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
-      <td>${(aefi*100).toFixed(1)}%</td>
-      <td>${(ahrs*100).toFixed(1)}%</td>
+    const t = totUni[prevUni];
+    html += `<tr class="subtotal-ie"><td colspan="2">▶ TOTAL ${prevUni}</td>
+      <td class="${ieFlag(wavg(t.rows,'IE','Km_valido'))}">${wavg(t.rows,'IE','Km_valido').toFixed(4)}</td>
+      <td class="${ieFlag(wavg(t.rows,'IP','Km_valido'))}">${wavg(t.rows,'IP','Km_valido').toFixed(4)}</td>
+      <td>${(wavg(t.rows,'Eficiencia','Kms_totales')*100).toFixed(1)}%</td>
+      <td>${(wavg(t.rows,'%hrsAsignadas','Kms_totales')*100).toFixed(1)}%</td>
       <td style="color:var(--orange)">${t.nPred}</td></tr>`;
   }
+
   // Total empresa
-  const all={ie:[],ip:[],efi:[],hrs:[]};
-  Object.values(grupos).forEach(r=>{all.ie.push(...r.ie);all.ip.push(...r.ip);all.efi.push(...r.efi);all.hrs.push(...r.hrs);});
-  const aie=avg(all.ie),aip=avg(all.ip),aefi=avg(all.efi),ahrs=avg(all.hrs);
-  html+=`<tr class="total-ie"><td colspan="2">▶▶ TOTAL EMPRESA</td>
-    <td class="${ieFlag(aie)}">${aie.toFixed(4)}</td>
-    <td class="${ieFlag(aip)}">${aip.toFixed(4)}</td>
-    <td>${(aefi*100).toFixed(1)}%</td>
-    <td>${(ahrs*100).toFixed(1)}%</td><td>—</td></tr>`;
-  document.getElementById('tablaResumenIeBody').innerHTML=html;
+  const allRows = datos;
+  html += `<tr class="total-ie"><td colspan="2">▶▶ TOTAL EMPRESA</td>
+    <td class="${ieFlag(wavg(allRows,'IE','Km_valido'))}">${wavg(allRows,'IE','Km_valido').toFixed(4)}</td>
+    <td class="${ieFlag(wavg(allRows,'IP','Km_valido'))}">${wavg(allRows,'IP','Km_valido').toFixed(4)}</td>
+    <td>${(wavg(allRows,'Eficiencia','Kms_totales')*100).toFixed(1)}%</td>
+    <td>${(wavg(allRows,'%hrsAsignadas','Kms_totales')*100).toFixed(1)}%</td>
+    <td>—</td></tr>`;
+
+  document.getElementById('tablaResumenIeBody').innerHTML = html;
 }
 
 // ── CHARTS KM ─────────────────────────────────────────────────
@@ -996,9 +964,10 @@ function exportarCSV() {
     descargar([headers.join(';'),...rows].join('\n'),`km_vacio_${ini}_${fin}.csv`);
   } else {
     const datos=getDatosFiltradosIe();
-    const headers=['tipo','fecha','celula','unidad','IE','IP','Eficiencia','%hrsAsignadas'];
+    const headers=['tipo','fecha','celula','unidad','IE','IP','Eficiencia','%hrsAsignadas','Km_valido','Kms_totales'];
     const rows=datos.map(r=>[r.es_pred?'prediccion':'real',r.ds.substring(0,10),r.Celula,r.Unidad,
-      (r.IE||0).toFixed(4),(r.IP||0).toFixed(4),(r.Eficiencia||0).toFixed(4),(r['%hrsAsignadas']||0).toFixed(4)].join(';'));
+      (r.IE||0).toFixed(4),(r.IP||0).toFixed(4),(r.Eficiencia||0).toFixed(4),(r['%hrsAsignadas']||0).toFixed(4),
+      Math.round(r.Km_valido||0),Math.round(r.Kms_totales||0)].join(';'));
     descargar([headers.join(';'),...rows].join('\n'),`calidad_servicio_${ini}_${fin}.csv`);
   }
 }
